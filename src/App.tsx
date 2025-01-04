@@ -17,10 +17,12 @@ import ProtectedRoute from "./page/context/ProtectedRoute";
 import CompanyRoute from "./page/context/CompanyRoute";
 import CompanyStudentProfilePage from "./page/company-page/StudentProfilePage";
 import CompanyReachoutPage from "./page/company-page/CompanyReachoutPage";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   return (
     <div>
+      <Toaster />
       <BrowserRouter>
         <Routes>
           <Route>

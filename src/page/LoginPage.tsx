@@ -9,14 +9,17 @@ import { encrypt } from "./util/Utility";
 import Cookies from "js-cookie";
 import { useAuth } from "./context/AuthContext";
 import Microsoft from "../assets/microsoft.png"
+import { useToast } from "@/components/hooks/use-toast";
 
 function LoginPage() {
   const nav = useNavigate();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [companyLogin, setCompanyLogin] = useState(false);
   const { instance, inProgress, accounts } = useMsal();
   const { login } = useAuth();
+  const { toast } = useToast();
 
   async function handleLogin() {
     try {
@@ -48,7 +51,11 @@ function LoginPage() {
         console.log(response);
       }
     } catch (error: any) {
-
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+        description: error.message,
+      });
       console.log(error.message);
     }
   }
@@ -135,6 +142,27 @@ function LoginPage() {
     });
   };
 
+  const handleLoginStudent = async () => {
+    try {
+      const body = {
+        email: email,
+        token: "test"
+      }
+      const loginResp = await axios.post(
+        import.meta.env.VITE_API + "user/loginStudent",
+        body
+      );
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+        description: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <div className="h-[100vh] w-[100vw] bg-[#D6E4F0]">
       <div className="h-full w-full flex justify-center items-center">
@@ -165,13 +193,22 @@ function LoginPage() {
                 </Button>
               </div>
             ) : (
-              <Button
-                className="w-full bg-[#005581] mt-[15px] hover:bg-[#00344E] flex items-center"
-                onClick={loginMicrosoft}
-              >
-                <div><img src={Microsoft} width={20} className="mr-2"/></div>
-                <div>Student Microsoft Login</div>
-              </Button>
+              <div>
+                <Input
+                  className="my-[10px]"
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  type={"email"}
+                />
+                <Button
+                  className="w-full bg-[#005581] mt-[15px] hover:bg-[#00344E] flex items-center"
+                  onClick={handleLoginStudent}
+                  // onClick={loginMicrosoft}
+                >
+                  <div><img src={Microsoft} width={20} className="mr-2"/></div>
+                  <div>Student Microsoft Login</div>
+                </Button>
+              </div>
             )}
 
             <Button
