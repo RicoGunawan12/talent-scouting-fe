@@ -8,7 +8,7 @@ import axios from "axios";
 import { encrypt } from "./util/Utility";
 import Cookies from "js-cookie";
 import { useAuth } from "./context/AuthContext";
-import Microsoft from "../assets/microsoft.png"
+import Microsoft from "../assets/microsoft.png";
 import { useToast } from "@/components/hooks/use-toast";
 
 function LoginPage() {
@@ -35,8 +35,12 @@ function LoginPage() {
       console.log(response.data);
 
       if (response) {
-        Cookies.set("name", encrypt(response.data.data.name), { expires: 1 / 24 });
-        Cookies.set("email", encrypt(response.data.data.email), { expires: 1 / 24 });
+        Cookies.set("name", encrypt(response.data.data.name), {
+          expires: 1 / 24,
+        });
+        Cookies.set("email", encrypt(response.data.data.email), {
+          expires: 1 / 24,
+        });
         Cookies.set("id", encrypt(response.data.data.id), { expires: 1 / 24 });
         Cookies.set("is_microsoft", encrypt("false"), { expires: 1 / 24 });
         // Cookies.set("id", encrypt(response.data.id.toString()), {
@@ -44,7 +48,7 @@ function LoginPage() {
         // });
         Cookies.set("token", encrypt(response.data.accessToken));
         console.log("asdasd");
-        
+
         login();
         nav("/company/home");
       } else {
@@ -76,19 +80,18 @@ function LoginPage() {
             scopes: ["user.read"],
           });
           console.log(response);
-          
-          
+
           const body = {
             email: "admin@mail.com",
             password: "admin",
           };
-    
+
           const loginResp = await axios.post(
             import.meta.env.VITE_API + "user/login",
             body
           );
           console.log(loginResp.data);
-          
+
           if (accounts[0].username.endsWith("@binus.ac.id")) {
             Cookies.set("token", encrypt(loginResp.data.accessToken), {
               expires: 1 / 24,
@@ -102,7 +105,7 @@ function LoginPage() {
               expires: 1 / 24,
             });
             Cookies.set("is_microsoft", encrypt("true"), { expires: 1 / 24 });
-            
+
             // const student = await axios.get(
             //   import.meta.env.VITE_API +
             //     "getStudentByEmail?email=" +
@@ -146,12 +149,14 @@ function LoginPage() {
     try {
       const body = {
         email: email,
-        token: "test"
-      }
+        token: "test",
+      };
       const loginResp = await axios.post(
         import.meta.env.VITE_API + "user/loginStudent",
         body
       );
+      console.log(loginResp);
+
       Cookies.set("token", encrypt(loginResp.data.accessToken), {
         expires: 1 / 24,
       });
@@ -164,7 +169,7 @@ function LoginPage() {
         expires: 1 / 24,
       });
       Cookies.set("is_microsoft", encrypt("true"), { expires: 1 / 24 });
-      
+
       // const student = await axios.get(
       //   import.meta.env.VITE_API +
       //     "getStudentByEmail?email=" +
@@ -192,7 +197,7 @@ function LoginPage() {
         description: error.response.data.error,
       });
     }
-  }
+  };
 
   return (
     <div className="h-[100vh] w-[100vw] bg-[#D6E4F0]">
@@ -236,7 +241,9 @@ function LoginPage() {
                   onClick={handleLoginStudent}
                   // onClick={loginMicrosoft}
                 >
-                  <div><img src={Microsoft} width={20} className="mr-2"/></div>
+                  <div>
+                    <img src={Microsoft} width={20} className="mr-2" />
+                  </div>
                   <div>Student Microsoft Login</div>
                 </Button>
               </div>
