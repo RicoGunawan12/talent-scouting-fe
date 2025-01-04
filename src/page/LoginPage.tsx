@@ -152,6 +152,37 @@ function LoginPage() {
         import.meta.env.VITE_API + "user/loginStudent",
         body
       );
+      Cookies.set("token", encrypt(loginResp.data.accessToken), {
+        expires: 1 / 24,
+      });
+      if (accounts[0].name) {
+        Cookies.set("name", encrypt(loginResp.data.data.name), {
+          expires: 1 / 24,
+        });
+      }
+      Cookies.set("email", encrypt(loginResp.data.data.email), {
+        expires: 1 / 24,
+      });
+      Cookies.set("is_microsoft", encrypt("true"), { expires: 1 / 24 });
+      
+      // const student = await axios.get(
+      //   import.meta.env.VITE_API +
+      //     "getStudentByEmail?email=" +
+      //     accounts[0].username
+      // );
+
+      // Cookies.set("student", student.data, { expires: 1 / 24 });
+      Cookies.set("id", encrypt(loginResp.data.data.id.toString()), {
+        expires: 1 / 24,
+      });
+      Cookies.set("gpa", encrypt(loginResp.data.data.gpa.toString()), {
+        expires: 1 / 24,
+      });
+      Cookies.set("nim", encrypt(loginResp.data.data.nim.toString()), {
+        expires: 1 / 24,
+      });
+      login();
+      nav("/home");
     } catch (error) {
       console.log(error);
 
