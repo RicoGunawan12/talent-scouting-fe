@@ -160,11 +160,9 @@ function LoginPage() {
       Cookies.set("token", encrypt(loginResp.data.accessToken), {
         expires: 1 / 24,
       });
-      if (accounts[0].name) {
-        Cookies.set("name", encrypt(loginResp.data.data.name), {
-          expires: 1 / 24,
-        });
-      }
+      Cookies.set("name", encrypt(loginResp.data.data.name), {
+        expires: 1 / 24,
+      });
       Cookies.set("email", encrypt(loginResp.data.data.email), {
         expires: 1 / 24,
       });
