@@ -69,7 +69,7 @@ function CompanyVacancyPage() {
         <div>
           {loading ? (
             <Spinner />
-          ) : vacancy.length < 1 ? (
+          ) : vacancy === null ? (
             <div className="text-red-500 mt-10">There is no vancancy</div>
           ) : (
             vacancy.map((v) => {
