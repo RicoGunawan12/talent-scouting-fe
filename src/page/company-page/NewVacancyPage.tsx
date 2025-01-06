@@ -277,7 +277,7 @@ function NewVacancyPage() {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
+        description: "All field must be filled",
       });
     }
   };
