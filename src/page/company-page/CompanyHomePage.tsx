@@ -4,7 +4,10 @@ import { Input } from "@/components/ui/input";
 import JobCard2 from "../component/JobCard2";
 import StudentCard from "../component/StudentCard";
 import { StudentCardProps } from "../props/StudentCardProps";
-import { CompanyVacancyWithApplyCountProps, VacancyResponse } from "../props/CompanyVacancyProps.ts";
+import {
+  CompanyVacancyWithApplyCountProps,
+  VacancyResponse,
+} from "../props/CompanyVacancyProps.ts";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import axios from "axios";
@@ -101,26 +104,23 @@ export interface Application {
 
 function CompanyHomePage() {
   const [students, setStudents] = useState<Student[]>([]);
-  const [vacancies, setVacancies] = useState<
-    JobVacancy[]
-  >([]);
+  const [vacancies, setVacancies] = useState<JobVacancy[]>([]);
   const { toast } = useToast();
 
   useEffect(() => {
     async function getStudents() {
       try {
         const response = await axios.post(
-          import.meta.env.VITE_API + "student/getStudentByFilter", {
-
-          },
+          import.meta.env.VITE_API + "student/getStudentByFilter",
+          {},
           {
             headers: {
-              Authorization: `Bearer ${decrypt(Cookies.get("token"))}`
-            }
+              Authorization: `Bearer ${decrypt(Cookies.get("token"))}`,
+            },
           }
         );
         console.log(response.data);
-        
+
         setStudents(response.data);
       } catch (error) {
         toast({
@@ -140,7 +140,7 @@ function CompanyHomePage() {
             "/3"
         );
         console.log(response.data);
-        
+
         setVacancies(response.data);
       } catch (error) {
         toast({
@@ -183,7 +183,7 @@ function CompanyHomePage() {
           </div>
 
           <div className="flex w-full gap-4">
-            {vacancies.length < 1 ? (
+            {vacancies === null ? (
               <div className="flex flex-col items-center w-full">
                 <div className="my-2">There is no vacancy</div>
                 <Link to="/company/new-vacancy">
