@@ -49,7 +49,7 @@ function CompanyStudentProfilePage() {
     async function getCV() {
       try {
         const response = await axios.get(
-          `https://job-fit-cv/api/user/${Cookies.get("nim")}/cv`
+          `https://job-fit-cv/api/user/${student?.nim}/cv`
         );
         console.log(response);
       } catch (error) {
@@ -60,19 +60,17 @@ function CompanyStudentProfilePage() {
     async function getRecommendation() {
       try {
         const response = await axios.get(
-          `https://job-fit-cv/api/user/${Cookies.get(
-            "nim"
-          )}/recommended-company`
+          `https://job-fit-cv/api/user/${student?.nim}/recommended-company`
         );
         console.log(response);
       } catch (error) {
         console.log(error);
       }
     }
-    getCV();
-    getRecommendation();
 
     getStudentById();
+    getRecommendation();
+    getCV();
   }, []);
 
   const handleReach = async () => {
