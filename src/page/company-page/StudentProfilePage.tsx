@@ -57,7 +57,7 @@ function CompanyStudentProfilePage() {
       }
     }
 
-    getCV();
+    getStudentById();
   }, []);
 
   const handleReach = async () => {
