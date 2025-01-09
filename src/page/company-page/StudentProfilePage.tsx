@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 import { capitalizeName, decrypt } from "../util/Utility.tsx";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button.tsx";
-import Portofolio from "../../assets/portofolio.png"
+import Portofolio from "../../assets/portofolio.png";
 
 import {
   AlertDialog,
@@ -39,13 +39,39 @@ function CompanyStudentProfilePage() {
           import.meta.env.VITE_API + "student/" + studentId
         );
         console.log(response.data);
-        
+
         setStudent(response.data);
       } catch (error) {
         console.log(error);
-        
       }
     }
+
+    async function getCV() {
+      try {
+        const response = await axios.get(
+          `https://job-fit-cv/api/user/${Cookies.get("nim")}/cv`
+        );
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    async function getRecommendation() {
+      try {
+        const response = await axios.get(
+          `https://job-fit-cv/api/user/${Cookies.get(
+            "nim"
+          )}/recommended-company`
+        );
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getCV();
+    getRecommendation();
+
     getStudentById();
   }, []);
 
@@ -54,10 +80,10 @@ function CompanyStudentProfilePage() {
       const body = {
         CompanyId: decrypt(Cookies.get("id")),
         StudentId: studentId,
-        Message: notes
-      }
+        Message: notes,
+      };
       console.log(body);
-      
+
       const response = await axios.post(
         import.meta.env.VITE_API + "reachOut/addNewReachOut",
         body
@@ -67,17 +93,17 @@ function CompanyStudentProfilePage() {
         title: "Message sent!",
         description: "Wait for reply in your email!",
       });
-      nav('/company/home');
+      nav("/company/home");
     } catch (error) {
       console.log(error);
-      
+
       toast({
         variant: "destructive",
         title: "Something went wrong",
         description: "Inform admin immediately!",
       });
     }
-  }
+  };
 
   return (
     <Layout>
@@ -101,8 +127,14 @@ function CompanyStudentProfilePage() {
               <div className="text-[1.2rem]">GPA: {student?.gpa}</div>
               <div className="text-[1.2rem]">{student?.email}</div>
               <div className="mt-2 flex gap-2">
-                <Link to={student?.personalUrl || ""} className="flex items-center bg-blue-200 px-2 rounded-xl" target="_blank">
-                  <div><img src={Portofolio} width={20} className="mr-2"/></div>
+                <Link
+                  to={student?.personalUrl || ""}
+                  className="flex items-center bg-blue-200 px-2 rounded-xl"
+                  target="_blank"
+                >
+                  <div>
+                    <img src={Portofolio} width={20} className="mr-2" />
+                  </div>
                   <div>Portofolio Website</div>
                 </Link>
                 {/* <Link to={student?.personalUrl || ""} target="_blank">
@@ -115,8 +147,7 @@ function CompanyStudentProfilePage() {
                 </Link> */}
               </div>
 
-              {
-                decrypt(Cookies.get("is_microsoft")) === "true" ?
+              {decrypt(Cookies.get("is_microsoft")) === "true" ? (
                 <div className="mt-4">
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
@@ -133,7 +164,10 @@ function CompanyStudentProfilePage() {
                           <div className="my-6">
                             <div>Personal Link</div>
                             <div className="mt-2">
-                              <Input type="text" placeholder="https://john.doe"/>
+                              <Input
+                                type="text"
+                                placeholder="https://john.doe"
+                              />
                             </div>
 
                             <div className="text-[red] mt-2">
@@ -156,8 +190,8 @@ function CompanyStudentProfilePage() {
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
-                </div> 
-                :
+                </div>
+              ) : (
                 <div className="mt-4">
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
@@ -168,7 +202,7 @@ function CompanyStudentProfilePage() {
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle className="text-center">
-                          Reach { student?.name } to your company!
+                          Reach {student?.name} to your company!
                         </AlertDialogTitle>
                         <AlertDialogDescription>
                           <div className="my-6">
@@ -183,9 +217,9 @@ function CompanyStudentProfilePage() {
                             <div className="text-[red] mt-2">
                               <div className="font-semibold">Notes:</div>
                               <div>
-                                After you apply to this company your profile will be
-                                seen by company. You can not update your message
-                                after you apply
+                                After you apply to this company your profile
+                                will be seen by company. You can not update your
+                                message after you apply
                               </div>
                             </div>
                           </div>
@@ -201,7 +235,7 @@ function CompanyStudentProfilePage() {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-              }
+              )}
             </div>
           </div>
 
