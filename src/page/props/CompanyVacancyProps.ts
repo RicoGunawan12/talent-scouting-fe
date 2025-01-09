@@ -18,7 +18,7 @@ export interface JobTypeProps {
 export interface VacancyResponse {
     Id: string,
     CompanyId: string,
-    Company: {
+    company: {
         Id: string,
         UserId: string,
         Name: string,

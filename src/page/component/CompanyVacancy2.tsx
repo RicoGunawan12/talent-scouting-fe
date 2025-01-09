@@ -30,7 +30,7 @@ const CompanyVacancy: React.FC<CompanyVacancyWithApplyCountProps> = ({
             </div>
 
             <div>
-              <img src={jobVacancy.Company.logoUrl} className="h-[55px]" />
+              <img src={jobVacancy.company.logoUrl} className="h-[55px]" />
             </div>
           </div>
           <div

@@ -112,12 +112,14 @@ function CompanyDetailPage() {
           <div className="mt-6">
             {loading ? (
               <Spinner />
-            ) : vacancies.length < 1 ? (
+            ) : vacancies === null ? (
               <div className="text-center text-red-600">
                 There is no vacancy in this company
               </div>
             ) : (
               vacancies.map((vacancy) => {
+                console.log(vacancy);
+                
                 return (
                   <CompanyVacancy2
                     // jobApplyCount={vacancy.jobApplyCount}
