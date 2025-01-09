@@ -19,7 +19,7 @@ import { CheckboxCustom } from "../component/CheckboxCustom";
 import Spinner from "../component/Spinner";
 
 export interface Student {
-  id: string
+  id: string;
   nim: string;
   name: string;
   phone: string;
@@ -51,14 +51,15 @@ function BrowseStudentPage() {
           setMajor("");
         }
         const response = await axios.post(
-          import.meta.env.VITE_API + "student/getStudentByFilter", {
+          import.meta.env.VITE_API + "student/getStudentByFilter",
+          {
             searchKeyword: search,
-            major: major,
-            position: position
+            major: major === "-" ? "" : major,
+            position: position,
           }
         );
         console.log(response.data);
-        
+
         setStudents(response.data);
       } catch (error) {}
       setLoading(false);
@@ -91,19 +92,30 @@ function BrowseStudentPage() {
           >
             <div className="font-bold">Filters</div>
 
-            <Input value={search} onChange={(e) => { setSearch(e.target.value); setUpdate(!update)  }} className="my-2" placeholder="Search Student" />
+            <Input
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setUpdate(!update);
+              }}
+              className="my-2"
+              placeholder="Search Student"
+            />
 
             <div>
-              <Select onValueChange={(value) => { setMajor(value); setUpdate(!update) }}>
+              <Select
+                onValueChange={(value) => {
+                  setMajor(value);
+                  setUpdate(!update);
+                }}
+              >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Filter Major" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     {/* <SelectLabel>Fruits</SelectLabel> */}
-                    <SelectItem value="-">
-                      All
-                    </SelectItem>
+                    <SelectItem value="-">All</SelectItem>
                     <SelectItem value="Computer Science">
                       Computer Science
                     </SelectItem>
@@ -125,7 +137,7 @@ function BrowseStudentPage() {
             <div className="font-bold mt-10">Filter Strong Position</div>
 
             <div>
-              <CheckboxCustom text={"Front End Developer"}  />
+              <CheckboxCustom text={"Front End Developer"} />
               <CheckboxCustom text={"Back End Developer"} />
               <CheckboxCustom text={"AI Engineer"} />
               <CheckboxCustom text={"Mobile Developer"} />
@@ -141,31 +153,32 @@ function BrowseStudentPage() {
               <Spinner />
             ) : (
               <div className="grid grid-cols-3 gap-10">
-                {
-                  students != null ? 
-                    students.map((student: Student) => {
-                      return (
-                        <StudentCard
-                          gpa={student?.gpa}
-                          key={student?.id}
-                          id={student?.id}
-                          name={student?.name}
-                          nim={student?.nim}
-                          email={student?.email}
-                          phone={student?.phone}
-                          major={student?.major}
-                          address={student?.address}
-                          city={student?.city}
-                          state={student?.state}
-                          pictureUrl={student?.pictureUrl}
-                          description={student?.description}
-                          personalUrl={student?.personalUrl}
-                        />
-                      );
-                    })
-                    :
-                    <div className="text-center text-[red]">There is no student</div>
-                }
+                {students != null ? (
+                  students.map((student: Student) => {
+                    return (
+                      <StudentCard
+                        gpa={student?.gpa}
+                        key={student?.id}
+                        id={student?.id}
+                        name={student?.name}
+                        nim={student?.nim}
+                        email={student?.email}
+                        phone={student?.phone}
+                        major={student?.major}
+                        address={student?.address}
+                        city={student?.city}
+                        state={student?.state}
+                        pictureUrl={student?.pictureUrl}
+                        description={student?.description}
+                        personalUrl={student?.personalUrl}
+                      />
+                    );
+                  })
+                ) : (
+                  <div className="text-center text-[red]">
+                    There is no student
+                  </div>
+                )}
               </div>
             )}
           </div>
