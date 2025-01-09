@@ -47,13 +47,15 @@ function CompanyStudentProfilePage() {
         console.log(error);
       }
       try {
-        const cv = await axios.get(`https://job-fit-cv/api/user/${nim}/cv`);
+        // const cv = await axios.get(`https://job-fit-cv/api/user/${nim}/cv`);
+        const cv = await axios.get(`https://job-fit-cv/api/user/2502017572/cv`);
         console.log(cv);
       } catch (error) {}
 
       try {
         const recommendation = await axios.get(
-          `https://job-fit-cv/api/user/${nim}/recommended-company`
+          // `https://job-fit-cv/api/user/${nim}/recommended-company`
+          `https://job-fit-cv/api/user/2502017572/recommended-company`
         );
         console.log(recommendation);
       } catch (error) {}
