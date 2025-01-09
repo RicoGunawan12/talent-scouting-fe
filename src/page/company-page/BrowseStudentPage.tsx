@@ -87,7 +87,7 @@ function BrowseStudentPage() {
         </div>
         <div className="flex mt-10 w-full relative">
           <div
-            className="w-1/4 bg-[#F0F0F0] min-h-[60vh] rounded-sm p-4 sticky top-[15%]"
+            className="w-1/4 bg-[#F0F0F0] min-h-[60vh] h-full rounded-sm p-4 sticky top-[15%]"
             data-aos="fade-up"
           >
             <div className="font-bold">Filters</div>

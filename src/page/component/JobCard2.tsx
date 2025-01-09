@@ -41,10 +41,10 @@ const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
                     ).toString() + " Days Left"}
               </div>
               <div
-                className="text-[24px] font-semibold mb-2 max-h-[70px] h-[70px]"
+                className="text-[24px] font-semibold mb-2"
                 style={{
                   display: "-webkit-box",
-                  WebkitLineClamp: 2,
+                  WebkitLineClamp: 1,
                   WebkitBoxOrient: "vertical",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
