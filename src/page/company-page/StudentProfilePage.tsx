@@ -34,33 +34,29 @@ function CompanyStudentProfilePage() {
 
   useEffect(() => {
     async function getStudentById() {
+      var nim = "";
       try {
         const response = await axios.get(
           import.meta.env.VITE_API + "student/" + studentId
         );
         console.log(response.data);
-
-        // const cv = await axios.get(
-        //   `https://job-fit-cv/api/user/${response.data.nim}/cv`
-        // );
-
-        // const recommendation = await axios.get(
-        //   `https://job-fit-cv/api/user/${response.data.nim}/recommended-company`
-        // );
-
-        const cv = await axios.get(`https://job-fit-cv/api/user/2502017572/cv`);
-
-        const recommendation = await axios.get(
-          `https://job-fit-cv/api/user/2502017572/recommended-company`
-        );
-
-        console.log(cv);
-        console.log(recommendation);
+        nim = response.data.nim;
 
         setStudent(response.data);
       } catch (error) {
         console.log(error);
       }
+      try {
+        const cv = await axios.get(`https://job-fit-cv/api/user/${nim}/cv`);
+        console.log(cv);
+      } catch (error) {}
+
+      try {
+        const recommendation = await axios.get(
+          `https://job-fit-cv/api/user/${nim}/recommended-company`
+        );
+        console.log(recommendation);
+      } catch (error) {}
     }
 
     getStudentById();
