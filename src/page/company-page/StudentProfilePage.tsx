@@ -40,12 +40,18 @@ function CompanyStudentProfilePage() {
         );
         console.log(response.data);
 
-        const cv = await axios.get(
-          `https://job-fit-cv/api/user/${response.data.nim}/cv`
-        );
+        // const cv = await axios.get(
+        //   `https://job-fit-cv/api/user/${response.data.nim}/cv`
+        // );
+
+        // const recommendation = await axios.get(
+        //   `https://job-fit-cv/api/user/${response.data.nim}/recommended-company`
+        // );
+
+        const cv = await axios.get(`https://job-fit-cv/api/user/2502017572/cv`);
 
         const recommendation = await axios.get(
-          `https://job-fit-cv/api/user/${response.data.nim}/recommended-company`
+          `https://job-fit-cv/api/user/2502017572/recommended-company`
         );
 
         console.log(cv);
