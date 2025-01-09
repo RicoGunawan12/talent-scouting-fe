@@ -40,36 +40,23 @@ function CompanyStudentProfilePage() {
         );
         console.log(response.data);
 
+        const cv = await axios.get(
+          `https://job-fit-cv/api/user/${response.data.nim}/cv`
+        );
+
+        const recommendation = await axios.get(
+          `https://job-fit-cv/api/user/${response.data.nim}/recommended-company`
+        );
+
+        console.log(cv);
+        console.log(recommendation);
+
         setStudent(response.data);
       } catch (error) {
         console.log(error);
       }
     }
 
-    async function getCV() {
-      try {
-        const response = await axios.get(
-          `https://job-fit-cv/api/user/${student?.nim}/cv`
-        );
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    async function getRecommendation() {
-      try {
-        const response = await axios.get(
-          `https://job-fit-cv/api/user/${student?.nim}/recommended-company`
-        );
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    getStudentById();
-    getRecommendation();
     getCV();
   }, []);
 
