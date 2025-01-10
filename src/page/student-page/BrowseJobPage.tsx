@@ -190,7 +190,7 @@ function BrowseJobPage() {
                   return (
                     <CompanyVacancy
                       jobVacancy={vacancy}
-                      jobApplyCount={20}
+                      jobApplyCount={vacancy.jobApplyCount}
                     />
                   );
                 })

@@ -8,6 +8,7 @@ import { CompanyCardProps } from "../props/CompanyCardProps";
 import Spinner from "../component/Spinner";
 import { useToast } from "@/components/hooks/use-toast";
 import { CompanyVacancyWithApplyCountProps, VacancyResponse } from "../props/CompanyVacancyProps";
+import { JobVacancy } from "./HomePage";
 
 export interface Company {
   id: string;
@@ -24,7 +25,7 @@ function CompanyDetailPage() {
   const [loading, setLoading] = useState(false);
   const [company, setCompany] = useState<Company>();
   const [vacancies, setVacancies] = useState<
-    VacancyResponse[]
+    JobVacancy[]
   >([]);
   const { toast } = useToast();
 

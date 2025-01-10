@@ -114,6 +114,9 @@ function StudentRequestPage() {
           {active ? (
             <div>
               {
+                reach === null ?
+                ""
+                :
                 reach.map((r) => {
                   return <AppliedRequestStudent 
                     description={r.company.description} 

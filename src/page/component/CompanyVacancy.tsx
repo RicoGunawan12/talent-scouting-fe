@@ -25,7 +25,7 @@ const CompanyVacancy: React.FC<VacancyProps> = ({
               <div className="text-[24px] font-semibold">
                 {jobVacancy.jobPosition}
               </div>
-              {/* <div className="text-[16px]">at {jobVacancy.company.name}</div> */}
+              <div className="text-[16px]">at {jobVacancy.company.name}</div>
               <div className="text-[16px]">{jobVacancy.salaryRange}</div>
             </div>
 
