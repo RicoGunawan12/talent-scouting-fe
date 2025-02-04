@@ -25,17 +25,20 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "@/components/hooks/use-toast.ts";
 import { Input } from "@/components/ui/input.tsx";
+import Spinner from "../component/Spinner.tsx";
 
 function CompanyStudentProfilePage() {
   const nav = useNavigate();
   const { studentId } = useParams();
   const [student, setStudent] = useState<StudentCardProps>();
   const [notes, setNotes] = useState("");
+  const [loading, setLoading] = useState(false);
   const [recommendation, setRecommendation] = useState<{ name: string, position: { id: string, name: string } }[]>([]);
   const [cv, setCv] = useState<any>()
 
   useEffect(() => {
     async function getStudentById() {
+      setLoading(true);
       var nim = "";
       try {
         const response = await axios.get(
@@ -65,6 +68,7 @@ function CompanyStudentProfilePage() {
         setRecommendation(recommendation?.data);
         console.log(recommendation);
       } catch (error) {}
+      setLoading(false);
     }
 
     getStudentById();
@@ -271,6 +275,9 @@ function CompanyStudentProfilePage() {
             </div>
 
             {
+              loading ?
+              <Spinner/>
+              :
               cv ?
               <div className="w-full">
                 <div className="text-[24px] font-medium mb-4 font-semibold">
@@ -333,19 +340,15 @@ function CompanyStudentProfilePage() {
                   <div className="text-[24px] font-medium mb-4 font-semibold">
                     Skills
                   </div>
-
-                  {
-                    cv?.skills.map((skill: any) => {
-                      return <div className="mb-4">
-                        <div className="text-[18px] font-semibold mb-2">
-                          { skill?.name }
-                        </div>
-                        {/* <div>
-                          { proj.projectDescription }
-                        </div> */}
-                      </div>
-                    })
-                  }
+                  <li>
+                    {
+                      cv?.skills.map((skill: any) => {
+                          return <ul className="text-[18px] font-semibold mb-2">
+                            { skill?.name }
+                          </ul>
+                      })
+                    }
+                  </li>
                 </div>
               </div>
               :

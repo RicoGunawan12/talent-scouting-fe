@@ -11,7 +11,7 @@ const JobRecommendationCard: React.FC<JobRecommendationProps> = ({
         Recommended
       </div>
 
-      <div className="font-semibold text-[18px]">{JobName}</div>
+      <div className="font-semibold text-[16px]">{JobName}</div>
     </div>
   );
 };
