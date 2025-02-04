@@ -244,6 +244,7 @@ function CompanyStudentProfilePage() {
             </div>
             <div className="flex justify-between mt-6 gap-4">
               {
+                loading &&
                 recommendation.map((rec: { name: string, position: { id: string, name: string }}, index) => {
                   if (index <= 3) {
                     return <JobRecommendationCard
@@ -265,90 +266,94 @@ function CompanyStudentProfilePage() {
           </div>
 
           <div className="mt-10 w-full flex gap-10">
-            <div>
-              <div className="text-[24px] font-medium mb-2 font-semibold text-center sticky top-10">
-                Curriculum Vitae
-              </div>
-              <div className="flex mt-6 w-full gap-10 sticky top-[100px]">
-                <CVTemplate />
-              </div>
-            </div>
+            
 
             {
               loading ?
               <Spinner/>
               :
               cv ?
-              <div className="w-full">
-                <div className="text-[24px] font-medium mb-4 font-semibold">
-                  Educations
+              <div>
+                <div>
+                  <div className="text-[24px] font-medium mb-2 font-semibold text-center sticky top-10">
+                    Curriculum Vitae
+                  </div>
+                  <div className="flex mt-6 w-full gap-10 sticky top-[100px]">
+                    <CVTemplate />
+                  </div>
                 </div>
 
-                {
-                  cv?.educations.map((edu: any) => {
-                    return <div className="mb-4">
-                      <div className="text-[18px] font-semibold mb-2">
-                        { edu?.degree } {" "} { edu?.schoolName } { " (" } {edu?.startDate} { " - "} { edu?.endDate } { ")"}
+                <div className="w-full">
+                  <div className="text-[24px] font-medium mb-4 font-semibold">
+                    Educations
+                  </div>
+
+                  {
+                    cv?.educations.map((edu: any) => {
+                      return <div className="mb-4">
+                        <div className="text-[18px] font-semibold mb-2">
+                          { edu?.degree } {" "} { edu?.schoolName } { " (" } {edu?.startDate} { " - "} { edu?.endDate } { ")"}
+                        </div>
+                        <div>
+                          Field of study: { edu?.fieldOfStudy }
+                        </div>
                       </div>
-                      <div>
-                        Field of study: { edu?.fieldOfStudy }
-                      </div>
+                    })
+                  }
+
+                  <div className="mt-10 w-full">
+                    <div className="text-[24px] font-medium mb-4 font-semibold">
+                      Experiences
                     </div>
-                  })
-                }
 
-                <div className="mt-10 w-full">
-                  <div className="text-[24px] font-medium mb-4 font-semibold">
-                    Experiences
-                  </div>
-
-                  {
-                    cv?.experiences.map((exp: any) => {
-                      return <div className="mb-4">
-                        <div className="text-[18px] font-semibold mb-2">
-                          { exp?.companyName } { " - " } { exp?.positionTitle } { " (" } {exp?.startDate} { " - "} { exp?.endDate } { ")"}
-                        </div>
-                        <div>
-                          { exp?.summary }
-                        </div>
-                      </div>
-                    })
-                  }
-                </div>
-
-
-                <div className="mt-10 w-full">
-                  <div className="text-[24px] font-medium mb-4 font-semibold">
-                    Projects
-                  </div>
-
-                  {
-                    cv?.projects.map((proj: any) => {
-                      return <div className="mb-4">
-                        <div className="text-[18px] font-semibold mb-2">
-                          { proj?.projectName }
-                        </div>
-                        <div>
-                          { proj?.projectDescription }
-                        </div>
-                      </div>
-                    })
-                  }
-                </div>
-
-                <div className="mt-10 w-full">
-                  <div className="text-[24px] font-medium mb-4 font-semibold">
-                    Skills
-                  </div>
-                  <li>
                     {
-                      cv?.skills.map((skill: any) => {
-                          return <ul className="text-[18px] font-semibold mb-2">
-                            { skill?.name }
-                          </ul>
+                      cv?.experiences.map((exp: any) => {
+                        return <div className="mb-4">
+                          <div className="text-[18px] font-semibold mb-2">
+                            { exp?.companyName } { " - " } { exp?.positionTitle } { " (" } {exp?.startDate} { " - "} { exp?.endDate } { ")"}
+                          </div>
+                          <div>
+                            { exp?.summary }
+                          </div>
+                        </div>
                       })
                     }
-                  </li>
+                  </div>
+
+
+                  <div className="mt-10 w-full">
+                    <div className="text-[24px] font-medium mb-4 font-semibold">
+                      Projects
+                    </div>
+
+                    {
+                      cv?.projects.map((proj: any) => {
+                        return <div className="mb-4">
+                          <div className="text-[18px] font-semibold mb-2">
+                            { proj?.projectName }
+                          </div>
+                          <div>
+                            { proj?.projectDescription }
+                          </div>
+                        </div>
+                      })
+                    }
+                  </div>
+
+                  <div className="mt-10 w-full">
+                    <div className="text-[24px] font-medium mb-4 font-semibold">
+                      Skills
+                    </div>
+                    <li>
+                      {
+                        cv?.skills.map((skill: any) => {
+                            return <ul className="text-[18px] font-semibold mb-2">
+                              { skill?.name }
+                            </ul>
+                        })
+                      }
+                    </li>
+                  </div>
                 </div>
               </div>
               :
