@@ -344,15 +344,15 @@ function CompanyStudentProfilePage() {
                     <div className="text-[24px] font-medium mb-4 font-semibold">
                       Skills
                     </div>
-                    <li>
+                    <ul>
                       {
                         cv?.skills.map((skill: any) => {
-                            return <ul className="text-[18px] font-semibold mb-2">
+                            return <li className="text-[18px] font-semibold mb-2">
                               { skill?.name }
-                            </ul>
+                            </li>
                         })
                       }
-                    </li>
+                    </ul>
                   </div>
                 </div>
               </div>
