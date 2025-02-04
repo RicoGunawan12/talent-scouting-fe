@@ -75,7 +75,7 @@ export interface VacancyResponse {
 }
 
 export interface CompanyVacancyWithApplyCountProps {
-    jobVacancy: VacancyResponse;
+    jobVacancy: JobVacancy;
     jobApplyCount: number;
 }
 
