@@ -271,7 +271,7 @@ function CompanyStudentProfilePage() {
             </div>
 
             <div className="w-full">
-              <div className="text-[24px] font-medium mb-4 font-semibold">
+              {/* <div className="text-[24px] font-medium mb-4 font-semibold">
                 Educations
               </div>
 
@@ -286,7 +286,7 @@ function CompanyStudentProfilePage() {
                     </div>
                   </div>
                 })
-              }
+              } */}
 
               <div className="mt-10 w-full">
                 <div className="text-[24px] font-medium mb-4 font-semibold">
