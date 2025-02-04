@@ -50,11 +50,11 @@ function CompanyStudentProfilePage() {
       }
       try {
         // const cv = await axios.get(`https://job-fit-cv/api/user//cv`);
-        const cv = await axios.get(
+        const cvResponse = await axios.get(
           `https://job-fit-cv.shirloin.my.id/api/user/2502017572/cv`
         );
-        console.log(cv);
-        setCv(cv.data.cv);
+        console.log(cvResponse);
+        setCv(cvResponse?.data.cv);
       } catch (error) {}
       
       try {
@@ -62,7 +62,7 @@ function CompanyStudentProfilePage() {
           // `https://job-fit-cv/api/user/2502017572/recommended-company`
           `https://job-fit-cv.shirloin.my.id/api/user/2502017572/recommended-company`
         );
-        setRecommendation(recommendation.data);
+        setRecommendation(recommendation?.data);
         console.log(recommendation);
       } catch (error) {}
     }
@@ -270,7 +270,89 @@ function CompanyStudentProfilePage() {
               </div>
             </div>
 
-            
+            {
+              cv ?
+              <div className="w-full">
+                <div className="text-[24px] font-medium mb-4 font-semibold">
+                  Educations
+                </div>
+
+                {
+                  cv?.educations.map((edu: any) => {
+                    return <div className="mb-4">
+                      <div className="text-[18px] font-semibold mb-2">
+                        { edu?.degree } {" "} { edu?.schoolName } { " (" } {edu?.startDate} { " - "} { edu?.endDate } { ")"}
+                      </div>
+                      <div>
+                        Field of study: { edu?.fieldOfStudy }
+                      </div>
+                    </div>
+                  })
+                }
+
+                <div className="mt-10 w-full">
+                  <div className="text-[24px] font-medium mb-4 font-semibold">
+                    Experiences
+                  </div>
+
+                  {
+                    cv?.experiences.map((exp: any) => {
+                      return <div className="mb-4">
+                        <div className="text-[18px] font-semibold mb-2">
+                          { exp?.companyName } { " - " } { exp?.positionTitle } { " (" } {exp?.startDate} { " - "} { exp?.endDate } { ")"}
+                        </div>
+                        <div>
+                          { exp?.summary }
+                        </div>
+                      </div>
+                    })
+                  }
+                </div>
+
+
+                <div className="mt-10 w-full">
+                  <div className="text-[24px] font-medium mb-4 font-semibold">
+                    Projects
+                  </div>
+
+                  {
+                    cv?.projects.map((proj: any) => {
+                      return <div className="mb-4">
+                        <div className="text-[18px] font-semibold mb-2">
+                          { proj?.projectName }
+                        </div>
+                        <div>
+                          { proj?.projectDescription }
+                        </div>
+                      </div>
+                    })
+                  }
+                </div>
+
+                <div className="mt-10 w-full">
+                  <div className="text-[24px] font-medium mb-4 font-semibold">
+                    Skills
+                  </div>
+
+                  {
+                    cv?.skills.map((skill: any) => {
+                      return <div className="mb-4">
+                        <div className="text-[18px] font-semibold mb-2">
+                          { skill?.name }
+                        </div>
+                        {/* <div>
+                          { proj.projectDescription }
+                        </div> */}
+                      </div>
+                    })
+                  }
+                </div>
+              </div>
+              :
+              <div className="text-center">
+                There is no experience or the student not fill the CV yet
+              </div>
+            }
           </div>
         </div>
       </div>
