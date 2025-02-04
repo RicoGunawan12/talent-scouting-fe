@@ -31,6 +31,8 @@ function CompanyStudentProfilePage() {
   const { studentId } = useParams();
   const [student, setStudent] = useState<StudentCardProps>();
   const [notes, setNotes] = useState("");
+  const [recommendation, setRecommendation] = useState<{ name: string, position: { id: string, name: string } }[]>([]);
+  const [cv, setCv] = useState<any>()
 
   useEffect(() => {
     async function getStudentById() {
@@ -47,18 +49,20 @@ function CompanyStudentProfilePage() {
         console.log(error);
       }
       try {
-        // const cv = await axios.get(`https://job-fit-cv/api/user/${nim}/cv`);
+        // const cv = await axios.get(`https://job-fit-cv/api/user//cv`);
         const cv = await axios.get(
           `https://job-fit-cv.shirloin.my.id/api/user/2502017572/cv`
         );
         console.log(cv);
+        setCv(cv.data.cv);
       } catch (error) {}
-
+      
       try {
         const recommendation = await axios.get(
-          // `https://job-fit-cv/api/user/${nim}/recommended-company`
+          // `https://job-fit-cv/api/user/2502017572/recommended-company`
           `https://job-fit-cv.shirloin.my.id/api/user/2502017572/recommended-company`
         );
+        setRecommendation(recommendation.data);
         console.log(recommendation);
       } catch (error) {}
     }
@@ -235,16 +239,24 @@ function CompanyStudentProfilePage() {
               Job Recommendation
             </div>
             <div className="flex justify-between mt-6 gap-4">
-              <JobRecommendationCard
-                JobName={"Front End Developer"}
-                Index={1}
-              />
-              <JobRecommendationCard JobName={"Back End Developer"} Index={2} />
+              {
+                recommendation.map((rec: { name: string, position: { id: string, name: string }}, index) => {
+                  if (index <= 3) {
+                    return <JobRecommendationCard
+                      JobName={rec.position.name}
+                      Index={index}
+                    />
+                  } 
+                  else return
+                })
+              }
+              
+              {/* <JobRecommendationCard JobName={"Back End Developer"} Index={2} />
               <JobRecommendationCard JobName={"AI Engineer"} Index={3} />
               <JobRecommendationCard
                 JobName={"Full Stack Developer"}
                 Index={4}
-              />
+              /> */}
             </div>
           </div>
 
@@ -260,167 +272,78 @@ function CompanyStudentProfilePage() {
 
             <div className="w-full">
               <div className="text-[24px] font-medium mb-4 font-semibold">
-                Work Experience
+                Educations
               </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
+
+              {
+                cv.educations.map((edu: any) => {
+                  return <div className="mb-4">
+                    <div className="text-[18px] font-semibold mb-2">
+                      { edu.degree } {" "} { edu.schoolName } { " (" } {edu.startDate} { " - "} { edu.endDate } { ")"}
+                    </div>
+                    <div>
+                      Field of study: { edu.fieldOfStudy }
+                    </div>
+                  </div>
+                })
+              }
+
+              <div className="mt-10 w-full">
+                <div className="text-[24px] font-medium mb-4 font-semibold">
+                  Experiences
                 </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
+
+                {
+                  cv.experiences.map((exp: any) => {
+                    return <div className="mb-4">
+                      <div className="text-[18px] font-semibold mb-2">
+                        { exp.companyName } { " - " } { exp.positionTitle } { " (" } {exp.startDate} { " - "} { exp.endDate } { ")"}
+                      </div>
+                      <div>
+                        { exp.summary }
+                      </div>
+                    </div>
+                  })
+                }
               </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
+
+
+              <div className="mt-10 w-full">
+                <div className="text-[24px] font-medium mb-4 font-semibold">
+                  Projects
                 </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
+
+                {
+                  cv.projects.map((proj: any) => {
+                    return <div className="mb-4">
+                      <div className="text-[18px] font-semibold mb-2">
+                        { proj.projectName }
+                      </div>
+                      <div>
+                        { proj.projectDescription }
+                      </div>
+                    </div>
+                  })
+                }
               </div>
 
               <div className="mt-10 w-full">
                 <div className="text-[24px] font-medium mb-4 font-semibold">
-                  Project
+                  Skills
                 </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
+
+                {
+                  cv.skills.map((skill: any) => {
+                    return <div className="mb-4">
+                      <div className="text-[18px] font-semibold mb-2">
+                        { skill.name }
+                      </div>
+                      {/* <div>
+                        { proj.projectDescription }
+                      </div> */}
+                    </div>
+                  })
+                }
               </div>
             </div>
           </div>
