@@ -116,7 +116,7 @@ function CompanyStudentProfilePage() {
               />
             </div>
             <div className="ml-16 w-[60%]">
-              <div className="text-[3rem] font-semibold">
+              <div className="text-[2.5rem] font-semibold">
                 {student
                   ? student.name
                   : capitalizeName(decrypt(Cookies.get("name")))}
@@ -244,7 +244,8 @@ function CompanyStudentProfilePage() {
             </div>
             <div className="flex justify-between mt-6 gap-4">
               {
-                loading &&
+                loading ?
+                "" : 
                 recommendation.map((rec: { name: string, position: { id: string, name: string }}, index) => {
                   if (index <= 3) {
                     return <JobRecommendationCard
@@ -265,7 +266,6 @@ function CompanyStudentProfilePage() {
             </div>
           </div>
 
-          <div className="mt-10 w-full flex gap-10">
             
 
             {
@@ -273,7 +273,7 @@ function CompanyStudentProfilePage() {
               <Spinner/>
               :
               cv ?
-              <div>
+              <div className="mt-10 w-full flex gap-10">
                 <div>
                   <div className="text-[24px] font-medium mb-2 font-semibold text-center sticky top-10">
                     Curriculum Vitae
@@ -361,7 +361,6 @@ function CompanyStudentProfilePage() {
                 There is no experience or the student not fill the CV yet
               </div>
             }
-          </div>
         </div>
       </div>
     </Layout>
