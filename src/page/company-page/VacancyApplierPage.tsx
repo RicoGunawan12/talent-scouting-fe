@@ -82,13 +82,20 @@ function VacancyApplierPage() {
             <div>
               <div className="text-[red] font-semibold">
                 {vacancy?.endDateTime
-                  ? Math.ceil(
-                      (new Date(vacancy?.endDateTime).getTime() -
-                        new Date().getTime()) /
-                        (1000 * 60 * 60 * 24)
-                    )
+                  ? 
+                  Math.ceil(
+                    (new Date(vacancy?.endDateTime).getTime() -
+                      new Date().getTime()) /
+                      (1000 * 60 * 60 * 24)
+                  ) <= 0
+                    ? "Ended"
+                    : Math.ceil(
+                        (new Date(vacancy?.endDateTime).getTime() -
+                          new Date().getTime()) /
+                          (1000 * 60 * 60 * 24)
+                      ).toString() + " Days Left"
                   : ""}{" "}
-                Days Left
+                {/* Days Left */}
               </div>
               <div className="font-bold text-[32px]">
                 {vacancy?.jobPosition}
