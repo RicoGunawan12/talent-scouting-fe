@@ -44,7 +44,10 @@ function CompanyStudentProfilePage() {
   const hiddenContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handleDownload = async () => {
+    console.log("clicked");
+    
     if (!hiddenContainerRef.current) return;
+    console.log("get in");
 
     // Render the hidden component to a div
     const tempContainer = document.createElement("div");
@@ -61,7 +64,7 @@ function CompanyStudentProfilePage() {
       const imgWidth = 210; // A4 width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save("hidden-component.pdf");
+      pdf.save("CV.pdf");
 
       // Clean up
       document.body.removeChild(tempContainer);
