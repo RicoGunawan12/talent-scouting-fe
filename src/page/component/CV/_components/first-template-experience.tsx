@@ -15,8 +15,8 @@ export default function FirstTemplateExperience({
 
   return (
     <>
-      <div className="flex flex-col items-start mr-1 ">
-        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black text-2xl">
+      <div className="flex flex-col items-start mr-1 mb-4">
+        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black text-4xl">
           Experience
         </h1>
         {experiences.map((experience, index) => (
@@ -43,11 +43,11 @@ function ExperienceItem({ experience }: { experience: ExperienceItemProps }) {
         <div className="flex justify-between items-center">
           <h1 className="font-semibold text-start text-l leading-none">
             {experience.positionTitle}
-            <span className="ml-1 font-normal text-l">
+            <span className="ml-1 font-normal text-3xl">
               {experience.type !== '' ? experience.type : ''}
             </span>
           </h1>
-          <div className="text-l">
+          <div className="text-3xl">
             {experience.companyName !== '' ||
             experience.startDate !== '' ||
             experience.endDate !== '' ? (

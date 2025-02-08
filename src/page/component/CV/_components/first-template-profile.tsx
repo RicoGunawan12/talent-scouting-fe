@@ -24,14 +24,14 @@ export default function FirstTemplateProfile({
       <div>
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="uppercase font-bold text-black text-2xl tracking-wider">
+            <h1 className="uppercase font-bold text-black text-4xl tracking-wider">
               {fullName}
             </h1>
-            <h1 className="text-xl font-extralight leading-relaxed ">
+            <h1 className="text-3xl font-extralight leading-relaxed ">
               {position}
             </h1>
           </div>
-          <div className="text-xl">
+          <div className="text-2xl">
             {phone && (
               <div className="flex">
                 <h1 className="w-20">Phone</h1>
@@ -58,7 +58,7 @@ export default function FirstTemplateProfile({
             )}
           </div>
         </div>
-        <div className="w-full flex justify-between items-center my-1">
+        <div className="w-full flex justify-between items-center my-1 pb-4">
           <h1 className="self-center text-2xl leading-tight text-wrap my-1">
             {summary}
           </h1>
