@@ -26,6 +26,7 @@ import {
 import { toast } from "@/components/hooks/use-toast.ts";
 import { Input } from "@/components/ui/input.tsx";
 import Spinner from "../component/Spinner.tsx";
+import FirstTemplate from "../component/CV/page.tsx";
 
 function CompanyStudentProfilePage() {
   const nav = useNavigate();
@@ -279,7 +280,8 @@ function CompanyStudentProfilePage() {
                     Curriculum Vitae
                   </div>
                   <div className="flex mt-6 w-full gap-10 sticky top-[100px]">
-                    <CVTemplate />
+                    {/* <CVTemplate /> */}
+                    <FirstTemplate cv={cv}/>
                   </div>
                 </div>
 
@@ -357,7 +359,7 @@ function CompanyStudentProfilePage() {
                 </div>
               </div>
               :
-              <div className="text-center">
+              <div className="text-center text-red-500">
                 There is no experience or the student not fill the CV yet
               </div>
             }

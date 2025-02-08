@@ -58,9 +58,9 @@ function LoginPage() {
       toast({
         variant: "destructive",
         title: "Something went wrong",
-        description: error.message,
+        description: error.response.data.error,
       });
-      console.log(error.message);
+      console.log(error);
     }
   }
 
