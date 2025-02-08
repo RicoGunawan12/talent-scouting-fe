@@ -13,12 +13,12 @@ export default function FirstTemplate({ cv = null }: { cv?: TCV | null }) {
       <div className="w-full h-full flex flex-col font-sans">
         <FirstTemplateProfile profile={cv?.profile} />
         <hr className="w-full border-primary my-2" />
-        <div className="flex justify-between gap-4">
-          <div className="w-[305px] flex flex-col">
+        <div className="flex justify-between gap-4 w-full">
+          <div className="w-[70%] flex flex-col">
             <FirstTemplateExperience savedExperiences={cv?.experiences} />
             <FirstTemplateProject savedProjects={cv?.projects} />
           </div>
-          <div className="w-[155px] pl-2 flex flex-col items-start">
+          <div className="w-[30%] pl-2 flex flex-col items-start">
             <FirstTemplateSkill savedSkills={cv?.skills} />
             <FirstTemplateEducation savedEducations={cv?.educations} />
           </div>
