@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "../layout/Layout.tsx";
 import Image from "../../assets/Student.jpg";
 import JobRecommendationCard from "../component/JobRecommendationCard.tsx";
@@ -11,6 +11,9 @@ import { capitalizeName, decrypt } from "../util/Utility.tsx";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button.tsx";
 import Portofolio from "../../assets/portofolio.png";
+
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 import {
   AlertDialog,
@@ -27,6 +30,7 @@ import { toast } from "@/components/hooks/use-toast.ts";
 import { Input } from "@/components/ui/input.tsx";
 import Spinner from "../component/Spinner.tsx";
 import FirstTemplate from "../component/CV/page.tsx";
+import { createRoot } from "react-dom/client";
 
 function CompanyStudentProfilePage() {
   const nav = useNavigate();
@@ -36,6 +40,33 @@ function CompanyStudentProfilePage() {
   const [loading, setLoading] = useState(false);
   const [recommendation, setRecommendation] = useState<{ name: string, position: { id: string, name: string } }[]>([]);
   const [cv, setCv] = useState<any>()
+
+  const hiddenContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const handleDownload = async () => {
+    if (!hiddenContainerRef.current) return;
+
+    // Render the hidden component to a div
+    const tempContainer = document.createElement("div");
+    document.body.appendChild(tempContainer);
+    createRoot(tempContainer).render(<FirstTemplate cv={cv}/>);
+
+    // Wait for the component to be rendered before capturing it
+    setTimeout(async () => {
+      const canvas = await html2canvas(tempContainer);
+      const imgData = canvas.toDataURL("image/png");
+
+      // Create PDF
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgWidth = 210; // A4 width in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save("hidden-component.pdf");
+
+      // Clean up
+      document.body.removeChild(tempContainer);
+    }, 500); // Small delay to ensure rendering
+  };
 
   useEffect(() => {
     async function getStudentById() {
@@ -280,8 +311,11 @@ function CompanyStudentProfilePage() {
                     Curriculum Vitae
                   </div>
                   <div className="flex mt-6 w-full gap-10 sticky top-[100px]">
-                    {/* <CVTemplate /> */}
-                    <FirstTemplate cv={cv}/>
+                    
+                    <div onClick={handleDownload}>
+                      <CVTemplate />
+                    </div>
+                    
                   </div>
                 </div>
 
