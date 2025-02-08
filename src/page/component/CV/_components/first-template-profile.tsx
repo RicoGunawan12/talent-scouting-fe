@@ -34,32 +34,32 @@ export default function FirstTemplateProfile({
           <div className="text-xl">
             {phone && (
               <div className="flex">
-                <h1 className="w-12">Phone</h1>
+                <h1 className="w-20">Phone</h1>
                 <h1>: {phone}</h1>
               </div>
             )}
             {email && (
               <div className="flex">
-                <h1 className="w-12">Email</h1>
+                <h1 className="w-20">Email</h1>
                 <h1>: {email}</h1>
               </div>
             )}
             {github && (
               <div className="flex">
-                <h1 className="w-12">Github</h1>
+                <h1 className="w-20">Github</h1>
                 <h1>: {github}</h1>
               </div>
             )}
             {linkedin && (
               <div className="flex">
-                <h1 className="w-12">LinkedIn</h1>
+                <h1 className="w-20">LinkedIn</h1>
                 <h1>: {linkedin}</h1>
               </div>
             )}
           </div>
         </div>
         <div className="w-full flex justify-between items-center my-1">
-          <h1 className="self-center text-l leading-tight text-wrap my-1">
+          <h1 className="self-center text-2xl leading-tight text-wrap my-1">
             {summary}
           </h1>
         </div>

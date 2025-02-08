@@ -24,7 +24,7 @@ export default function FirstTemplateProject({
               {project.projectName}
             </h1>
             <h1
-              className="text-l text-wrap my-1"
+              className="text-2xl text-wrap my-1"
               dangerouslySetInnerHTML={{
                 __html: project.projectDescription.replace(/\n/g, '<br />'),
               }}

@@ -23,7 +23,7 @@ export default function FirstTemplateSkill({
         {skills.map((skill, index) => (
           <h1
             key={index}
-            className="font-normal text-start text-xl leading-normal"
+            className="font-normal text-start text-2xl leading-normal"
           >
             # {skill.name}
           </h1>

@@ -59,7 +59,7 @@ function ExperienceItem({ experience }: { experience: ExperienceItemProps }) {
           </div>
         </div>
         <h1
-          className="text-l text-wrap my-1 leading-tight text-justify"
+          className="text-2xl text-wrap my-1 leading-tight text-justify"
           dangerouslySetInnerHTML={{
             __html: experience.summary.replace(/\n/g, '<br />'),
           }}

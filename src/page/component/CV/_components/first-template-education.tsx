@@ -39,10 +39,10 @@ function EducationItem({ education }: { education: EducationItemProps }) {
         <h1 className="font-semibold text-start text-xl leading-normal">
           {education.schoolName}
         </h1>
-        <h1 className="text-l text-gray-800 leading-normal">
+        <h1 className="text-2xl text-gray-800 leading-normal">
           {education.degree} {education.fieldOfStudy}
         </h1>
-        <h1 className="text-l leading-normal">
+        <h1 className="text-2xl leading-normal">
           {education.startDate} - {education.endDate}
         </h1>
       </div>
