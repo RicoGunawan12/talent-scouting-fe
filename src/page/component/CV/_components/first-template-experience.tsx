@@ -40,8 +40,8 @@ function ExperienceItem({ experience }: { experience: ExperienceItemProps }) {
   return (
     <>
       <div className="w-full my-1">
-        <div className="flex justify-between items-center">
-          <h1 className="font-semibold text-start text-l leading-none">
+        <div className="flex justify-between items-center mb-1">
+          <h1 className="font-semibold text-start text-3xl leading-none">
             {experience.positionTitle}
             <span className="ml-1 font-normal text-3xl">
               {experience.type !== '' ? experience.type : ''}

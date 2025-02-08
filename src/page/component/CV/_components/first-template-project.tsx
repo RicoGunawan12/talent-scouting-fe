@@ -15,12 +15,12 @@ export default function FirstTemplateProject({
   return (
     <>
       <div className="flex flex-col items-start mr-1">
-        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black text-2xl">
+        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black text-4xl">
           Projects
         </h1>
         {projects.map((project, index) => (
           <div key={index} className="my-1">
-            <h1 className="font-semibold text-start text-xl leading-none">
+            <h1 className="font-semibold text-start text-3xl leading-none">
               {project.projectName}
             </h1>
             <h1
