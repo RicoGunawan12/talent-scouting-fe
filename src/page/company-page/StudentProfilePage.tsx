@@ -46,7 +46,7 @@ function CompanyStudentProfilePage() {
   const handleDownload = async () => {
     console.log("clicked");
     
-    if (!hiddenContainerRef.current) return;
+    // if (!hiddenContainerRef.current) return;
     console.log("get in");
 
     // Render the hidden component to a div
