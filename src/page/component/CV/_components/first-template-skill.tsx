@@ -17,13 +17,13 @@ export default function FirstTemplateSkill({
   return (
     <>
       <div className="flex flex-col items-start my-1">
-        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black">
+        <h1 className="uppercase font-bold leading-none tracking-widest mb-2 text-black text-2xl">
           Skills
         </h1>
         {skills.map((skill, index) => (
           <h1
             key={index}
-            className="font-normal text-start text-l leading-normal"
+            className="font-normal text-start text-xl leading-normal"
           >
             # {skill.name}
           </h1>
