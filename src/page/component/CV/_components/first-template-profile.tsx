@@ -58,7 +58,8 @@ export default function FirstTemplateProfile({
             )}
           </div>
         </div>
-        <div className="w-full flex justify-between items-center my-1 pb-4">
+
+        <div className="w-full flex justify-between items-center mt-3 pb-4">
           <h1 className="self-center text-2xl leading-tight text-wrap my-1">
             {summary}
           </h1>

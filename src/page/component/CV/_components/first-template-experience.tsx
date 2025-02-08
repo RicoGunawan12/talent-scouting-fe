@@ -39,7 +39,7 @@ interface ExperienceItemProps {
 function ExperienceItem({ experience }: { experience: ExperienceItemProps }) {
   return (
     <>
-      <div className="w-full my-1">
+      <div className="w-full my-2">
         <div className="flex justify-between items-center mb-1">
           <h1 className="font-semibold text-start text-3xl leading-none">
             {experience.positionTitle}

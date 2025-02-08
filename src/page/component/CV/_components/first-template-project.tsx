@@ -19,8 +19,8 @@ export default function FirstTemplateProject({
           Projects
         </h1>
         {projects.map((project, index) => (
-          <div key={index} className="my-1">
-            <h1 className="font-semibold text-start text-3xl leading-none">
+          <div key={index} className="my-2">
+            <h1 className="font-semibold text-start text-3xl leading-none mb-1">
               {project.projectName}
             </h1>
             <h1
