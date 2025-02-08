@@ -40,35 +40,51 @@ function CompanyStudentProfilePage() {
   const [loading, setLoading] = useState(false);
   const [recommendation, setRecommendation] = useState<{ name: string, position: { id: string, name: string } }[]>([]);
   const [cv, setCv] = useState<any>()
+  const [downloadingCV, setDownloadingCV] = useState(false);
 
   const hiddenContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handleDownload = async () => {
-    console.log("clicked");
-    
-    // if (!hiddenContainerRef.current) return;
-    console.log("get in");
-
-    // Render the hidden component to a div
+    setDownloadingCV(true);
     const tempContainer = document.createElement("div");
     document.body.appendChild(tempContainer);
-    createRoot(tempContainer).render(<FirstTemplate cv={cv}/>);
+    createRoot(tempContainer).render(<FirstTemplate cv={cv} />);
 
-    // Wait for the component to be rendered before capturing it
     setTimeout(async () => {
       const canvas = await html2canvas(tempContainer);
       const imgData = canvas.toDataURL("image/png");
 
-      // Create PDF
-      const pdf = new jsPDF("p", "mm", "a4");
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save("CV.pdf");
+      // Define margins (in mm)
+      const marginLeft = 30;
+      const marginTop = 30;
+      const marginRight = 30;
+      const marginBottom = 30;
 
-      // Clean up
+      // Define A4 size (210mm x 297mm)
+      const pageWidth = 210;
+      const pageHeight = 297;
+
+      // Calculate available width & height (after subtracting margins)
+      const availableWidth = pageWidth - marginLeft - marginRight;
+      const availableHeight = pageHeight - marginTop - marginBottom;
+
+      // Scale image while maintaining aspect ratio
+      let imgWidth = availableWidth;
+      let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      if (imgHeight > availableHeight) {
+        imgHeight = availableHeight;
+        imgWidth = (canvas.width * imgHeight) / canvas.height;
+      }
+
+      // Create PDF and add image with margins
+      const pdf = new jsPDF("p", "mm", "a4");
+      pdf.addImage(imgData, "PNG", marginLeft, marginTop, imgWidth, imgHeight);
+      pdf.save(student.nim + " - " + student.name + ".pdf");
+
       document.body.removeChild(tempContainer);
-    }, 500); // Small delay to ensure rendering
+    }, 500);
+    setDownloadingCV(false);
   };
 
   useEffect(() => {
@@ -316,7 +332,14 @@ function CompanyStudentProfilePage() {
                   <div className="flex mt-6 w-full gap-10 sticky top-[100px]">
                     
                     <div onClick={handleDownload}>
-                      <CVTemplate />
+                      {
+                        downloadingCV ? 
+                        <div className="flex justify-center items-center">
+                          <Spinner/>
+                        </div>
+                        :
+                        <CVTemplate />
+                      }
                     </div>
                     
                   </div>
