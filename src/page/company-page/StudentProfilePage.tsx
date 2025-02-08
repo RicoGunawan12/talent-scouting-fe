@@ -83,8 +83,8 @@ function CompanyStudentProfilePage() {
       pdf.save(student.nim + " - " + student.name + ".pdf");
 
       document.body.removeChild(tempContainer);
+      setDownloadingCV(false);
     }, 500);
-    setDownloadingCV(false);
   };
 
   useEffect(() => {
@@ -331,16 +331,17 @@ function CompanyStudentProfilePage() {
                   </div>
                   <div className="flex mt-6 w-full gap-10 sticky top-[100px]">
                     
-                    <div onClick={handleDownload}>
-                      {
-                        downloadingCV ? 
-                        <div className="flex justify-center items-center">
-                          <Spinner/>
-                        </div>
-                        :
-                        <CVTemplate />
-                      }
-                    </div>
+                    {
+                      downloadingCV ? 
+                      <div className="flex justify-center items-center">
+                        <Spinner/>
+                      </div>
+                      :
+                      <div onClick={handleDownload}>
+                          
+                          <CVTemplate />
+                      </div>
+                    }
                     
                   </div>
                 </div>
