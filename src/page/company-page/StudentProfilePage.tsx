@@ -55,10 +55,10 @@ function CompanyStudentProfilePage() {
       const imgData = canvas.toDataURL("image/png");
 
       // Define margins (in mm)
-      const marginLeft = 30;
-      const marginTop = 30;
-      const marginRight = 30;
-      const marginBottom = 30;
+      const marginLeft = 10;
+      const marginTop = 10;
+      const marginRight = 10;
+      const marginBottom = 10;
 
       // Define A4 size (210mm x 297mm)
       const pageWidth = 210;
@@ -333,7 +333,7 @@ function CompanyStudentProfilePage() {
                     
                     {
                       downloadingCV ? 
-                      <div className="flex justify-center items-center">
+                      <div className="flex justify-center items-center w-[15vw]">
                         <Spinner/>
                       </div>
                       :
