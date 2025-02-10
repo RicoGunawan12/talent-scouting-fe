@@ -24,6 +24,7 @@ function App() {
     <div>
       <Toaster />
       <BrowserRouter>
+        <div className="font-sans">
         <Routes>
           <Route>
             <Route
@@ -142,6 +143,7 @@ function App() {
             />
           </Route>
         </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );
