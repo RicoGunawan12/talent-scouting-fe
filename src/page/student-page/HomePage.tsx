@@ -176,7 +176,7 @@ const HomePage: React.FC = () => {
             accurate suggestions!
           </div>
 
-          <div className="flex justify-between max-md:flex-wrap mt-6 gap-6">
+          <div className="flex justify-between max-md:flex-wrap max-md:justify-center mt-6 gap-6">
             <JobRecommendationCard JobName={"Front End Developer"} Index={1} />
             <JobRecommendationCard JobName={"Back End Developer"} Index={2} />
             <JobRecommendationCard JobName={"AI Engineer"} Index={3} />

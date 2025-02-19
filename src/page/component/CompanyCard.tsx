@@ -31,7 +31,7 @@ const JobCard: React.FC<CompanyCardProps> = ({
 
               <div>
                 <div
-                  className="text-[1.5vw] font-semibold w-full"
+                  className="text-[24px] font-semibold w-full"
                   style={{
                     overflow: "hidden",
                     textOverflow: "ellipsis",
