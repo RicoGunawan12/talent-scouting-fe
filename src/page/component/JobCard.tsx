@@ -10,7 +10,7 @@ const JobCard: React.FC<JobCardProps> = ({
   Id,
 }) => {
   return (
-    <Link to={"/job-detail/" + Id} className="border-2 rounded-md py-6 px-2">
+    <Link to={"/job-detail/" + Id} className="w-[200px] border-2 rounded-md py-6 px-2">
       <div className="flex justify-center mb-6">
         <img
           src={Image}

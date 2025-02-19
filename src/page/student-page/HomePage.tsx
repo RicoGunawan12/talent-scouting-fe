@@ -176,7 +176,7 @@ const HomePage: React.FC = () => {
             accurate suggestions!
           </div>
 
-          <div className="flex justify-between mt-6">
+          <div className="flex justify-between max-md:flex-wrap mt-6">
             <JobRecommendationCard JobName={"Front End Developer"} Index={1} />
             <JobRecommendationCard JobName={"Back End Developer"} Index={2} />
             <JobRecommendationCard JobName={"AI Engineer"} Index={3} />
@@ -254,7 +254,7 @@ const HomePage: React.FC = () => {
               There is no vacancy. Stay tune
             </div>
           ) : (
-            <div className="grid grid-cols-5 mt-6 gap-10">
+            <div className="flex justify-center flex-wrap mt-6 gap-10">
               {vacancies.map((vacancy, idx) => {
                 
                 
@@ -295,7 +295,7 @@ const HomePage: React.FC = () => {
               There is no company. Stay tune
             </div>
           ) : (
-            <div className="grid grid-cols-3 mt-6 gap-10 mx-">
+            <div className="grid grid-cols-3 max-md:grid-cols-2 mt-6 gap-10 mx-">
               {companies.map((company: CompanyCardProps, idx: number) => {
                 return (
                   <CompanyCard

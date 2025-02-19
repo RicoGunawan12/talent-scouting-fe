@@ -20,7 +20,7 @@ const JobCard: React.FC<CompanyCardProps> = ({
     textOverflow: "ellipsis",
   };
   return (
-    <div className="border-2 px-8 pb-10 pt-4 shadow-md rounded-xl w-full">
+    <div className="border-2 px-8 pb-10 pt-4 shadow-md rounded-xl w-[500px]">
       <div>
         <div className="min-h-[28vh]">
           <div className="flex justify-between items-center h-[12vh]">
