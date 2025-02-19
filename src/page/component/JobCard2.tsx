@@ -12,7 +12,7 @@ interface JobCard2Props {
 
 const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
   return (
-    <div className="border-2 p-6 shadow-md w-full rounded-xl mb-8 flex flex-col md:flex-row items-start md:items-center">
+    <div className="border-2 p-6 shadow-md w-full rounded-xl mb-8 flex flex-col md:flex-row items-start md:items-center md:max-w-3xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
         <div className="mr-0 md:mr-8 w-full">
           <div className="flex flex-col md:flex-row mb-2 justify-between items-start md:items-center">

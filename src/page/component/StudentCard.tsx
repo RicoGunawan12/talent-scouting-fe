@@ -6,7 +6,7 @@ const StudentCard: React.FC<Student> = ({ id, name, major, pictureUrl, gpa }) =>
   return (
     <Link
       to={`/company/student-profile/${id}`}
-      className="border-2 rounded-md p-6 w-full sm:w-[45%] md:w-[30%] lg:w-[22%] h-auto flex flex-col items-center shadow-md hover:shadow-lg transition"
+      className="border-2 rounded-md p-6 w-full sm:w-[48%] md:w-[30%] lg:w-[22%] h-auto flex flex-col items-center shadow-md hover:shadow-lg transition mx-auto"
     >
       <div className="flex justify-center mb-2">
         <img
