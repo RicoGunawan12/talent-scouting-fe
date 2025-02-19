@@ -182,7 +182,7 @@ function CompanyHomePage() {
             Latest Vacancy
           </div>
 
-          <div className="flex flex-wrap justify-center w-full gap-4">
+          <div className="grid grid-cols-3 max-md:flex max-md:flex-wrap max-md:justify-center w-full gap-4">
             {vacancies === null ? (
               <div className="flex flex-col items-center w-full">
                 <div className="my-2">There is no vacancy</div>
@@ -220,7 +220,7 @@ function CompanyHomePage() {
             environments.
           </div>
 
-          <div className="grid grid-cols-3 w-full px-[10vw] gap-10 max-md:flex max-md:flex-wrap max-md:justify-center">
+          <div className="w-full px-[10vw] gap-10 flex flex-wrap justify-center">
             {students.map((student: Student) => {
               return (
                 <StudentCard
