@@ -49,7 +49,7 @@ function BrowseCompanyPage() {
       setLoading(true);
       try {
         const response = await axios.post(
-          import.meta.env.VITE_API + "getCompanyByFilter/",
+          import.meta.env.VITE_API + "company/getCompanyByFilter/",
           {
             searchKeyword: search,
             location: location
