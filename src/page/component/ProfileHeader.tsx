@@ -86,7 +86,7 @@ function ProfileHeader() {
 
   return (
     <div className="flex">
-      <div className="mr-6 ">
+      <div className="mr-6 max-md:hidden">
         <div>
           <p className="font-bold">{formattedDateWithoutSecondComma}</p>
         </div>
