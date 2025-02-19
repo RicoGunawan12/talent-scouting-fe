@@ -142,6 +142,10 @@ function BrowseCompanyPage() {
                 <Spinner />
               </div>
             ) : (
+              companies === null
+              ?
+                <div className="text-center text-red-500">There is no company</div>
+              :
               <div className="grid grid-cols-2 gap-10">
                 {companies.map((company: Company, idx: number) => {
                   
