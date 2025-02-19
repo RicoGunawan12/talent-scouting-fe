@@ -72,7 +72,7 @@ const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
           </div>
         </div>
 
-        <div className="ml-8">
+        <div className="min-md:ml-8">
           <div>
             <Link to={"/vacancy-applier/" + jobVacancy?.id}>
               <Button className="mt-2 transition w-[120px] hover:scale-105">
