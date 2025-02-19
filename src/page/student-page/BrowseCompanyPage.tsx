@@ -48,8 +48,12 @@ function BrowseCompanyPage() {
     async function getAllCompany() {
       setLoading(true);
       try {
-        const response = await axios.get(
-          import.meta.env.VITE_API + "company/",
+        const response = await axios.post(
+          import.meta.env.VITE_API + "getCompanyByFilter/",
+          {
+            searchKeyword: search,
+            location: location
+          },
           {
             headers: {
               Authorization: `Bearer ${decrypt(Cookies.get("token"))}`
@@ -70,7 +74,7 @@ function BrowseCompanyPage() {
     }
     AOS.init({ duration: 500 });
     getAllCompany();
-  }, []);
+  }, [search, location]);
   return (
     <Layout>
       <div className="mx-[8vw] mb-10 mt-6">
