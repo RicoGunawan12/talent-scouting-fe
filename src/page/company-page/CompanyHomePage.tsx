@@ -220,7 +220,7 @@ function CompanyHomePage() {
             environments.
           </div>
 
-          <div className="max-md:flex max-md:flex-wrap w-full max-md:justify-center grid grid-cols-3 px-[10vw] gap-10">
+          <div className="grid grid-cols-3 w-full px-[10vw] gap-10 max-md:flex max-md:flex-wrap max-md:justify-center">
             {students.map((student: Student) => {
               return (
                 <StudentCard
