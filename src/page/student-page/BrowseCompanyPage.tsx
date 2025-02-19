@@ -52,7 +52,8 @@ function BrowseCompanyPage() {
           import.meta.env.VITE_API + "company/getCompanyByFilter",
           {
             searchKeyword: search,
-            location: location
+            location: location,
+            name: ""
           },
           {
             headers: {
