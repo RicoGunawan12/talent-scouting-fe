@@ -16,7 +16,7 @@ interface JobCard2Props {
 }
 
 const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
-  console.log(jobVacancy);
+  
 
   return (
     <div className="border-2 p-6 shadow-md w-full rounded-xl mb-8 ">

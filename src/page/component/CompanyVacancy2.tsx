@@ -15,12 +15,21 @@ const CompanyVacancy: React.FC<CompanyVacancyWithApplyCountProps> = ({
           <div className="flex mb-2 justify-between items-center">
             <div>
               <div className="text-[red] font-semibold">
-                {Math.ceil(
-                  (new Date(jobVacancy.endDateTime).getTime() -
-                    new Date().getTime()) /
-                    (1000 * 60 * 60 * 24)
-                )}{" "}
-                Days Left
+              {jobVacancy?.endDateTime
+                  ? 
+                  Math.ceil(
+                    (new Date(jobVacancy?.endDateTime).getTime() -
+                      new Date().getTime()) /
+                      (1000 * 60 * 60 * 24)
+                  ) <= 0
+                    ? "Ended"
+                    : Math.ceil(
+                        (new Date(jobVacancy?.endDateTime).getTime() -
+                          new Date().getTime()) /
+                          (1000 * 60 * 60 * 24)
+                      ).toString() + " Days Left"
+                  : ""}{" "}
+                {/* Days Left */}
               </div>
               <div className="text-[24px] font-semibold">
                 {jobVacancy.jobPosition}

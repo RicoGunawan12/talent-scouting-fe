@@ -58,7 +58,7 @@ function BrowseStudentPage() {
             position: position,
           }
         );
-        console.log(response.data);
+        
 
         setStudents(response.data);
       } catch (error) {}

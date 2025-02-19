@@ -53,7 +53,7 @@ function BrowseCompanyPage() {
             }
           }
         );
-        console.log(response.data);
+        
         
         setCompanies(response.data);
       } catch (error) {
@@ -136,7 +136,7 @@ function BrowseCompanyPage() {
             ) : (
               <div className="grid grid-cols-2 gap-10">
                 {companies.map((company: Company, idx: number) => {
-                  console.log(company);
+                  
                   return (
                     <CompanyCard
                       Id={company.Id}

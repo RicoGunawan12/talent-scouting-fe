@@ -35,7 +35,7 @@ function CompanyDetailPage() {
         const response = await axios.get(
           import.meta.env.VITE_API + "company/" + companyId
         );
-        console.log(response.data);
+        
         
         setCompany(response.data);
       } catch (error) {
@@ -53,7 +53,7 @@ function CompanyDetailPage() {
         const response = await axios.get(
           import.meta.env.VITE_API + "jobVacancy/getByCompanyId/" + companyId
         );
-        console.log(response.data);
+        
         
         setVacancies(response.data);
       } catch (error) {
@@ -119,12 +119,12 @@ function CompanyDetailPage() {
               </div>
             ) : (
               vacancies.map((vacancy) => {
-                console.log(vacancy);
+                
                 
                 return (
                   <CompanyVacancy2
                     // jobApplyCount={vacancy.jobApplyCount}
-                    jobApplyCount={10}
+                    jobApplyCount={vacancy.jobApplyCount}
                     jobVacancy={vacancy}
                   />
                 );

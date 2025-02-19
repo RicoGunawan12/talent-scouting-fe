@@ -91,19 +91,19 @@ function StudentProfilePage() {
         const response = await axios.get(
           import.meta.env.VITE_API + "student/" + studentId
         );
-        console.log(response.data);
+        
         nim = response.data.nim;
 
         setStudent(response.data);
       } catch (error) {
-        console.log(error);
+        
       }
       try {
         // const cv = await axios.get(`https://job-fit-cv/api/user//cv`);
         const cvResponse = await axios.get(
           `https://job-fit-cv.shirloin.my.id/api/user/2502017572/cv`
         );
-        console.log(cvResponse);
+        
         setCv(cvResponse?.data.cv);
       } catch (error) {}
       
@@ -113,7 +113,7 @@ function StudentProfilePage() {
           `https://job-fit-cv.shirloin.my.id/api/user/2502017572/recommended-company`
         );
         setRecommendation(recommendation?.data);
-        console.log(recommendation);
+        
       } catch (error) {}
       setLoading(false);
     }
@@ -128,7 +128,7 @@ function StudentProfilePage() {
         StudentId: studentId,
         Message: notes
       }
-      console.log(body);
+      
       
       const response = await axios.post(
         import.meta.env.VITE_API + "reachOut/addNewReachOut",
@@ -163,7 +163,7 @@ function StudentProfilePage() {
         description: student?.description,
         personalUrl: personalUrl
       }
-      console.log(body);
+      
       
       axios.post(
         import.meta.env.VITE_API + "student/updateStudentData",

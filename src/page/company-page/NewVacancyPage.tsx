@@ -209,6 +209,24 @@ function NewVacancyPage() {
   };
 
   const handlePublish = async () => {
+
+    if (salaryStart <= 0 || salaryEnd <= 0) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Salary must more than 0",
+      });
+      return
+    }
+    if (salaryStart > salaryEnd) {
+      toast({
+        variant: "destructive",
+        title: "Validation Error",
+        description: "Salary end must be more equal than salary start",
+      });
+      return
+    }
+
     try {
         const extractedSkills = skills.map(
           ({ skillTitle, skillDescription }) => ({
@@ -248,7 +266,7 @@ function NewVacancyPage() {
         job_vacancy_responsibilities: extractedResponsibility,
         extras_infos: extractedSection
       };
-      console.log(vacancyBody);
+      
       
 
       const vacancy = await axios.post(
@@ -266,13 +284,13 @@ function NewVacancyPage() {
         description: "Your vacancy is published!",
       });
 
-      // console.log(vacancy.data);
+      // 
 
       
       
       nav("/company/vacancy");
     } catch (error) {
-      console.log(error);
+      
       
       toast({
         variant: "destructive",
@@ -291,7 +309,7 @@ function NewVacancyPage() {
           }
         }
       );
-      console.log(getSkill.data);
+      
       
       setDbSkills(getSkill.data);
     }

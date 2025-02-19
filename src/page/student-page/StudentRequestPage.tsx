@@ -54,7 +54,7 @@ function StudentRequestPage() {
         const response = await axios.get(
           import.meta.env.VITE_API + "jobApply/byStudentId/" + decrypt(Cookies.get("id"))
         );
-        console.log(response.data);
+        
         
         setRequests(response.data);
       } catch (error) {
@@ -73,7 +73,7 @@ function StudentRequestPage() {
         const response = await axios.get(
           import.meta.env.VITE_API + "reachOut/byStudentId/" + decrypt(Cookies.get("id"))
         );
-        console.log(response.data);
+        
         
         setReach(response.data)
         
@@ -115,7 +115,9 @@ function StudentRequestPage() {
             <div>
               {
                 reach === null ?
-                ""
+                <div className="text-center text-red-600 mt-10">
+                  There is no request
+                </div>
                 :
                 reach.map((r) => {
                   return <AppliedRequestStudent 
@@ -143,7 +145,7 @@ function StudentRequestPage() {
                 </div>
               ) : (
                 requests.map((req, idx) => {
-                  console.log(req);
+                  
 
                   return (
                     <AlertDialog key={idx}>

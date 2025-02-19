@@ -119,7 +119,7 @@ function CompanyHomePage() {
             },
           }
         );
-        console.log(response.data);
+        
 
         setStudents(response.data);
       } catch (error) {
@@ -139,7 +139,7 @@ function CompanyHomePage() {
             decrypt(Cookies.get("id")) +
             "/3"
         );
-        console.log(response.data);
+        
 
         setVacancies(response.data);
       } catch (error) {
@@ -192,7 +192,7 @@ function CompanyHomePage() {
               </div>
             ) : (
               vacancies.map((vacancy) => {
-                console.log(vacancy);
+                
 
                 return (
                   <JobCard2

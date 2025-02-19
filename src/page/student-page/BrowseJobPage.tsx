@@ -46,13 +46,13 @@ function BrowseJobPage() {
           JobTypeId: jobType,
           SearchKeyword: search,
         };
-        console.log(body);
+        
 
         const response = await axios.post(
           import.meta.env.VITE_API + "jobVacancy/getJobVacancyByFilter",
           body
         );
-        console.log(response.data);
+        
 
         setVacancies(response.data);
         setLoading(false);

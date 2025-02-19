@@ -96,7 +96,7 @@ const HomePage: React.FC = () => {
             }
           }
         );
-        console.log(response.data);
+        
         
         
         setCompanies(response.data);
@@ -126,11 +126,11 @@ const HomePage: React.FC = () => {
             }
           }
         );
-        console.log(response.data);
+        
         
         setVacancies(response.data);
       } catch (error) {
-        console.log(error);
+        
       }
     }
 
@@ -256,7 +256,7 @@ const HomePage: React.FC = () => {
           ) : (
             <div className="grid grid-cols-5 mt-6 gap-10">
               {vacancies.map((vacancy, idx) => {
-                console.log(vacancy);
+                
                 
                 return idx > 4 ? (
                   ""

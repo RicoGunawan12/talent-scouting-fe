@@ -32,7 +32,7 @@ function VacancyApplierPage() {
             "jobApply/byVacancyId/" +
             vacancyId
         );
-        console.log(vacancy.data);
+        
         
         setApplier(vacancy.data);
       } catch (error) {
@@ -52,7 +52,7 @@ function VacancyApplierPage() {
             "jobVacancy/" +
             vacancyId
         );
-        console.log(vacancy.data);
+        
         
         setVacancy(vacancy.data);
       } catch (error) {
@@ -137,7 +137,7 @@ function VacancyApplierPage() {
               <Spinner />
             ) : (
               applier.map((app, idx) => {
-                console.log(app);
+                
 
                 return (
                   <ApplierRow

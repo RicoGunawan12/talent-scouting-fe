@@ -39,7 +39,7 @@ const ApplierRow: React.FC<
       await axios.post(import.meta.env.VITE_API + "jobApply/updateJobApply", body);
       handleUpdate();
     } catch (error) {
-      console.log(error);
+      
       toast({
         variant: "destructive",
         title: "Something went wrong",
@@ -60,7 +60,7 @@ const ApplierRow: React.FC<
       await axios.post(import.meta.env.VITE_API + "jobApply/updateJobApply", body);
       handleUpdate();
     } catch (error) {
-      console.log(error);
+      
       
       toast({
         variant: "destructive",
