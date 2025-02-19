@@ -22,7 +22,7 @@ const StudentCard: React.FC<Student> = ({
   return (
     <Link
       to={"/company/student-profile/" + id}
-      className="border-2 rounded-md py-6 px-4 w-[15vw] h-auto "
+      className="border-2 rounded-md py-6 px-4 w-[300px] h-auto "
     >
       <div className="flex justify-center mb-2">
         <img
