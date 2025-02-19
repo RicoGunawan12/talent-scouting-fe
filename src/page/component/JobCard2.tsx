@@ -19,7 +19,7 @@ const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
   console.log(jobVacancy);
 
   return (
-    <div className="border-2 p-6 shadow-md w-[500px] rounded-xl mb-8 ">
+    <div className="border-2 p-6 shadow-md max-w-[500px] rounded-xl mb-8 ">
       <div className="flex justify-between items-center">
         <div className="mr-8 w-full">
           <div className="flex mb-2 justify-between items-center">

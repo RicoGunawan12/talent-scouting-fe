@@ -182,9 +182,9 @@ function CompanyHomePage() {
             Latest Vacancy
           </div>
 
-          <div className="flex w-full gap-4">
+          <div className="flex flex-wrap justify-center w-full gap-4">
             {vacancies === null ? (
-              <div className="flex flex-col flex-wrap items-center w-full">
+              <div className="flex flex-col items-center w-full">
                 <div className="my-2">There is no vacancy</div>
                 <Link to="/company/new-vacancy">
                   <Button>+ Add Vacancy Here</Button>
@@ -220,7 +220,7 @@ function CompanyHomePage() {
             environments.
           </div>
 
-          <div className="flex flex-wrap w-full justify-between px-[10vw] gap-10">
+          <div className="flex flex-wrap w-full justify-center px-[10vw] gap-10">
             {students.map((student: Student) => {
               return (
                 <StudentCard
