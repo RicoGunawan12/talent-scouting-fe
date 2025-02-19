@@ -220,7 +220,7 @@ function CompanyHomePage() {
             environments.
           </div>
 
-          <div className="flex flex-wrap w-full justify-center px-[10vw] gap-10">
+          <div className="flex flex-wrap w-full justify-center min-md:grid min-md:grid-cols-3 px-[10vw] gap-10">
             {students.map((student: Student) => {
               return (
                 <StudentCard
