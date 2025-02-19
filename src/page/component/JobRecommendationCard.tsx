@@ -6,7 +6,7 @@ const JobRecommendationCard: React.FC<JobRecommendationProps> = ({
   Index,
 }) => {
   return (
-    <div className="relative w-[20vw] h-[8vh] rounded-md border-2 flex justify-center items-center">
+    <div className="relative w-[250px] h-[8vh] rounded-md border-2 flex justify-center items-center">
       <div className="absolute bg-[#CFF1FF] text-[#0047FF] px-2 rounded-md text-[12px] font-bold top-[-10px] left-[10%]">
         Recommended
       </div>
