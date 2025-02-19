@@ -73,7 +73,7 @@ const ApplierRow: React.FC<
   return (
     <div className="flex justify-between items-center border-b-2  py-8">
       <Link
-        to={"/student-profile/" + student.id}
+        to={"/student-profile/company/" + student.id}
         className="flex items-center pl-4 py-2 hover:bg-gray-100 cursor-pointer"
       >
         <div className="mr-8">

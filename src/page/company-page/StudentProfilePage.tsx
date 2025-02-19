@@ -54,21 +54,17 @@ function CompanyStudentProfilePage() {
       const canvas = await html2canvas(tempContainer);
       const imgData = canvas.toDataURL("image/png");
 
-      // Define margins (in mm)
       const marginLeft = 10;
       const marginTop = 10;
       const marginRight = 10;
       const marginBottom = 10;
 
-      // Define A4 size (210mm x 297mm)
       const pageWidth = 210;
       const pageHeight = 297;
 
-      // Calculate available width & height (after subtracting margins)
       const availableWidth = pageWidth - marginLeft - marginRight;
       const availableHeight = pageHeight - marginTop - marginBottom;
 
-      // Scale image while maintaining aspect ratio
       let imgWidth = availableWidth;
       let imgHeight = (canvas.height * imgWidth) / canvas.width;
 
@@ -77,7 +73,6 @@ function CompanyStudentProfilePage() {
         imgWidth = (canvas.width * imgHeight) / canvas.height;
       }
 
-      // Create PDF and add image with margins
       const pdf = new jsPDF("p", "mm", "a4");
       pdf.addImage(imgData, "PNG", marginLeft, marginTop, imgWidth, imgHeight);
       pdf.save(student.nim + " - " + student.name + ".pdf");

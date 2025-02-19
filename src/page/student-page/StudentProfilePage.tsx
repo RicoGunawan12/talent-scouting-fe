@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../layout/Layout";
 import JobRecommendationCard from "../component/JobRecommendationCard";
 import CVTemplate from "../component/CVTemplate";
@@ -24,6 +24,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "@/components/hooks/use-toast.ts";
 import { Input } from "@/components/ui/input.tsx";
+import jsPDF from "jspdf";
+import { createRoot } from "react-dom/client";
+import FirstTemplate from "../component/CV/page.tsx";
+import html2canvas from "html2canvas";
+import Spinner from "../component/Spinner.tsx";
 
 function StudentProfilePage() {
   const nav = useNavigate();
@@ -33,23 +38,88 @@ function StudentProfilePage() {
   const [update, setUpdate] = useState(false);
   const [personalUrl, setPersonalUrl] = useState("");
 
+  const [loading, setLoading] = useState(false);
+  const [recommendation, setRecommendation] = useState<{ name: string, position: { id: string, name: string } }[]>([]);
+  const [cv, setCv] = useState<any>()
+  const [downloadingCV, setDownloadingCV] = useState(false);
+
+  const hiddenContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const handleDownload = async () => {
+    setDownloadingCV(true);
+    const tempContainer = document.createElement("div");
+    document.body.appendChild(tempContainer);
+    createRoot(tempContainer).render(<FirstTemplate cv={cv} />);
+
+    setTimeout(async () => {
+      const canvas = await html2canvas(tempContainer);
+      const imgData = canvas.toDataURL("image/png");
+
+      const marginLeft = 10;
+      const marginTop = 10;
+      const marginRight = 10;
+      const marginBottom = 10;
+
+      const pageWidth = 210;
+      const pageHeight = 297;
+
+      const availableWidth = pageWidth - marginLeft - marginRight;
+      const availableHeight = pageHeight - marginTop - marginBottom;
+
+      let imgWidth = availableWidth;
+      let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      if (imgHeight > availableHeight) {
+        imgHeight = availableHeight;
+        imgWidth = (canvas.width * imgHeight) / canvas.height;
+      }
+
+      const pdf = new jsPDF("p", "mm", "a4");
+      pdf.addImage(imgData, "PNG", marginLeft, marginTop, imgWidth, imgHeight);
+      pdf.save(student.nim + " - " + student.name + ".pdf");
+
+      document.body.removeChild(tempContainer);
+      setDownloadingCV(false);
+    }, 500);
+  };
+
   useEffect(() => {
     async function getStudentById() {
+      setLoading(true);
+      var nim = "";
       try {
         const response = await axios.get(
           import.meta.env.VITE_API + "student/" + studentId
         );
         console.log(response.data);
-        setPersonalUrl(response.data.personalUrl)
-        
+        nim = response.data.nim;
+
         setStudent(response.data);
       } catch (error) {
         console.log(error);
-        
       }
+      try {
+        // const cv = await axios.get(`https://job-fit-cv/api/user//cv`);
+        const cvResponse = await axios.get(
+          `https://job-fit-cv.shirloin.my.id/api/user/2502017572/cv`
+        );
+        console.log(cvResponse);
+        setCv(cvResponse?.data.cv);
+      } catch (error) {}
+      
+      try {
+        const recommendation = await axios.get(
+          // `https://job-fit-cv/api/user/2502017572/recommended-company`
+          `https://job-fit-cv.shirloin.my.id/api/user/2502017572/recommended-company`
+        );
+        setRecommendation(recommendation?.data);
+        console.log(recommendation);
+      } catch (error) {}
+      setLoading(false);
     }
+
     getStudentById();
-  }, [update]);
+  }, []);
 
   const handleReach = async () => {
     try {
@@ -245,195 +315,134 @@ function StudentProfilePage() {
               Job Recommendation
             </div>
             <div className="flex justify-between mt-6 gap-4">
-              <JobRecommendationCard
-                JobName={"Front End Developer"}
-                Index={1}
-              />
-              <JobRecommendationCard JobName={"Back End Developer"} Index={2} />
+              {
+                loading ?
+                "" : 
+                recommendation.map((rec: { name: string, position: { id: string, name: string }}, index) => {
+                  if (index <= 3) {
+                    return <JobRecommendationCard
+                      JobName={rec.position.name}
+                      Index={index}
+                    />
+                  } 
+                  else return
+                })
+              }
+              
+              {/* <JobRecommendationCard JobName={"Back End Developer"} Index={2} />
               <JobRecommendationCard JobName={"AI Engineer"} Index={3} />
               <JobRecommendationCard
                 JobName={"Full Stack Developer"}
                 Index={4}
-              />
+              /> */}
             </div>
           </div>
 
-          <div className="mt-10 w-full flex gap-10">
-            <div>
-              <div className="text-[24px] font-medium mb-2 font-semibold text-center sticky top-10">
-                Curriculum Vitae
-              </div>
-              <div className="flex mt-6 w-full gap-10 sticky top-[100px]">
-                <CVTemplate />
-              </div>
-            </div>
+          {
+              loading ?
+              <Spinner/>
+              :
+              cv ?
+              <div className="mt-10 w-full flex gap-10">
+                <div>
+                  <div className="text-[24px] font-medium mb-2 font-semibold text-center sticky top-10">
+                    Curriculum Vitae
+                  </div>
+                  <div className="flex mt-6 w-full gap-10 sticky top-[100px]">
+                    
+                    {
+                      downloadingCV ? 
+                      <div className="flex justify-center items-center w-[15vw]">
+                        <Spinner/>
+                      </div>
+                      :
+                      <div onClick={handleDownload}>
+                          
+                          <CVTemplate />
+                      </div>
+                    }
+                    
+                  </div>
+                </div>
 
-            <div className="w-full">
-              <div className="text-[24px] font-medium mb-4 font-semibold">
-                Work Experience
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
-              <div className="mb-4">
-                <div className="text-[18px] font-semibold mb-2">
-                  Junior Laboratory Assistant
-                </div>
-                <div>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam incidunt consequatur omnis voluptate exercitationem rem
-                  aspernatur facilis corrupti architecto fugiat pariatur nobis
-                  molestias, magni neque aut sit sed distinctio minus.
-                </div>
-              </div>
+                <div className="w-full">
+                  <div className="text-[24px] font-medium mb-4 font-semibold">
+                    Educations
+                  </div>
 
-              <div className="mt-10 w-full">
-                <div className="text-[24px] font-medium mb-4 font-semibold">
-                  Project
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
+                  {
+                    cv?.educations.map((edu: any) => {
+                      return <div className="mb-4">
+                        <div className="text-[18px] font-semibold mb-2">
+                          { edu?.degree } {" "} { edu?.schoolName } { " (" } {edu?.startDate} { " - "} { edu?.endDate } { ")"}
+                        </div>
+                        <div>
+                          Field of study: { edu?.fieldOfStudy }
+                        </div>
+                      </div>
+                    })
+                  }
+
+                  <div className="mt-10 w-full">
+                    <div className="text-[24px] font-medium mb-4 font-semibold">
+                      Experiences
+                    </div>
+
+                    {
+                      cv?.experiences.map((exp: any) => {
+                        return <div className="mb-4">
+                          <div className="text-[18px] font-semibold mb-2">
+                            { exp?.companyName } { " - " } { exp?.positionTitle } { " (" } {exp?.startDate} { " - "} { exp?.endDate } { ")"}
+                          </div>
+                          <div>
+                            { exp?.summary }
+                          </div>
+                        </div>
+                      })
+                    }
                   </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
+
+
+                  <div className="mt-10 w-full">
+                    <div className="text-[24px] font-medium mb-4 font-semibold">
+                      Projects
+                    </div>
+
+                    {
+                      cv?.projects.map((proj: any) => {
+                        return <div className="mb-4">
+                          <div className="text-[18px] font-semibold mb-2">
+                            { proj?.projectName }
+                          </div>
+                          <div>
+                            { proj?.projectDescription }
+                          </div>
+                        </div>
+                      })
+                    }
                   </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-[18px] font-semibold mb-2">
-                    AOL Web Programming (Ketring Website)
-                  </div>
-                  <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veniam incidunt consequatur omnis voluptate exercitationem
-                    rem aspernatur facilis corrupti architecto fugiat pariatur
-                    nobis molestias, magni neque aut sit sed distinctio minus.
+
+                  <div className="mt-10 w-full">
+                    <div className="text-[24px] font-medium mb-4 font-semibold">
+                      Skills
+                    </div>
+                    <ul>
+                      {
+                        cv?.skills.map((skill: any) => {
+                            return <li className="text-[18px] font-semibold mb-2">
+                              { skill?.name }
+                            </li>
+                        })
+                      }
+                    </ul>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+              :
+              <div className="text-center text-red-500">
+                There is no experience or the student not fill the CV yet
+              </div>
+            }
         </div>
       </div>
     </Layout>
