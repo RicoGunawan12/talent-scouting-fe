@@ -23,15 +23,15 @@ import { decrypt } from "../util/Utility";
 import Cookies from "js-cookie";
 
 export interface Company {
-  Id: string;
+  id: string;
   UserId: string;
-  Name: string;
-  LogoUrl: string;
-  Description: string;
-  Location: string;
-  CreatedAt: string; // ISO 8601 formatted date
-  UpdatedAt: string; // ISO 8601 formatted date
-  DeletedAt: string | null; // ISO 8601 formatted date or null
+  name: string;
+  logourl: string;
+  description: string;
+  location: string;
+  createdAt: string; // ISO 8601 formatted date
+  updatedAt: string; // ISO 8601 formatted date
+  deletedAt: string | null; // ISO 8601 formatted date or null
   // user: User;
 }
 
@@ -147,12 +147,12 @@ function BrowseCompanyPage() {
                   
                   return (
                     <CompanyCard
-                      Id={company.Id}
-                      Name={company.Name}
-                      LogoUrl={company.LogoUrl}
-                      Location={company.Location}
+                      Id={company.id}
+                      Name={company.name}
+                      LogoUrl={company.logourl}
+                      Location={company.location}
                       VacancyCount={10}
-                      Description={company.Description}
+                      Description={company.description}
                       key={idx}
                     />
                   );
