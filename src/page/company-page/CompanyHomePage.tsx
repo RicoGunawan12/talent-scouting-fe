@@ -158,89 +158,46 @@ function CompanyHomePage() {
 
   return (
     <Layout>
-      <div className="mx-[60px] overflow-hidden pb-14">
-        <div
-          className="bg-[#120272] p-[24px] mt-[30px] rounded-md"
-          data-aos="fade-up"
-        >
-          <div className="text-white text-[32px]">Welcome Back Rico!!</div>
-          <div className="text-white mt-[10px]">
-            We're thrilled to have you back on our platform! As a valued company
-            stakeholder, you have access to a talented pool of students eager to
-            make their mark in the industry. Take advantage of our tools to find
-            the right candidates and post your job openings. Together, let's
-            build the future by connecting bright minds with the right
-            opportunities.
-          </div>
-          <div className="mt-[30px] w-[30%]">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-12 overflow-hidden pb-14">
+        <div className="bg-[#120272] p-6 mt-6 rounded-md text-white" data-aos="fade-up">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">Welcome Back Rico!!</h1>
+          <p className="mt-3 text-sm sm:text-base">
+            We're thrilled to have you back on our platform! As a valued company stakeholder, you have access to a
+            talented pool of students eager to make their mark in the industry.
+          </p>
+          <div className="mt-4 w-full sm:w-1/2 md:w-1/3">
             <Input placeholder={"Let's find a job for you"} />
           </div>
         </div>
 
-        <div data-aos="fade-up">
-          <div className="text-[24px] font-medium my-10 text-center">
-            Latest Vacancy
-          </div>
-
-          <div className="flex w-full gap-4">
-            {vacancies === null ? (
-              <div className="flex flex-col items-center w-full">
-                <div className="my-2">There is no vacancy</div>
+        <div data-aos="fade-up" className="mt-10">
+          <h2 className="text-center text-xl sm:text-2xl font-medium">Latest Vacancy</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+            {vacancies.length === 0 ? (
+              <div className="col-span-full text-center">
+                <p className="my-2">There is no vacancy</p>
                 <Link to="/company/new-vacancy">
                   <Button>+ Add Vacancy Here</Button>
                 </Link>
               </div>
             ) : (
-              vacancies.map((vacancy) => {
-                
-
-                return (
-                  <JobCard2
-                    key={vacancy.id}
-                    jobVacancy={vacancy}
-                    jobApplyCount={vacancy.jobApplyCount}
-                  />
-                );
-              })
+              vacancies.map((vacancy) => (
+                <JobCard2 key={vacancy.id} jobVacancy={vacancy} jobApplyCount={vacancy.jobApplyCount} />
+              ))
             )}
           </div>
         </div>
 
-        <div className="mt-[40px]" data-aos="fade-up" data-aos-once="true">
-          <div className="text-[24px] font-medium mb-4 text-center">
-            Browse student may fit with your company
-          </div>
-
-          <div className="text-center mb-6">
-            Explore students who align with your company. Our candidates are
-            eager learners with a passion for innovation, equipped to tackle
-            challenges and bring fresh perspectives. They demonstrate strong
-            problem-solving abilities, adaptability, and a collaborative spirit,
-            making them a perfect fit for dynamic and forward-thinking
-            environments.
-          </div>
-
-          <div className="grid grid-cols-4 w-full justify-between px-[10vw] gap-10">
-            {students.map((student: Student) => {
-              return (
-                <StudentCard
-                  gpa={student.gpa}
-                  key={student.id}
-                  id={student.id}
-                  name={student.name}
-                  nim={student.nim}
-                  email={student.email}
-                  phone={student.phone}
-                  major={student.major}
-                  address={student.address}
-                  city={student.city}
-                  state={student.state}
-                  pictureUrl={student.pictureUrl}
-                  description={student.description}
-                  personalUrl={student.personalUrl}
-                />
-              );
-            })}
+        <div className="mt-10" data-aos="fade-up">
+          <h2 className="text-center text-xl sm:text-2xl font-medium">Browse Students</h2>
+          <p className="text-center text-sm sm:text-base mt-2">
+            Explore students who align with your company. Our candidates are eager learners with a passion for
+            innovation.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+            {students.map((student) => (
+              <StudentCard key={student.id} {...student} />
+            ))}
           </div>
         </div>
       </div>

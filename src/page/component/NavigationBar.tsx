@@ -20,7 +20,7 @@ function NavigationBar() {
   return (
     <div className="w-full shadow-md">
       <div className="flex items-center justify-between px-6 py-4 md:px-[60px]">
-        <div className="flex items-center">
+        <div className="flex items-center mr-12">
           <img src={LogoBinus} className="w-[100px]" alt="Logo" />
         </div>
         
