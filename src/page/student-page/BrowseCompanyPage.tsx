@@ -41,6 +41,9 @@ function BrowseCompanyPage() {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
+  const [search, setSearch] = useState("");
+  const [location, setLocation] = useState("");
+
   useEffect(() => {
     async function getAllCompany() {
       setLoading(true);
@@ -90,10 +93,10 @@ function BrowseCompanyPage() {
           >
             <div className="font-bold">Filters</div>
 
-            <Input className="my-2" placeholder="Search Company" />
+            <Input className="my-2" onChange={(e) => setSearch(e.target.value)} placeholder="Search Company" />
 
             <div>
-              <Select>
+              <Select onValueChange={(value) => setLocation(value)}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Location" />
                 </SelectTrigger>
