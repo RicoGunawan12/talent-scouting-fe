@@ -180,7 +180,7 @@ function CompanyHomePage() {
             Latest Vacancy
           </div>
 
-          <div className=" flex flex-wrap justify-center w-full gap-4">
+          <div className="grid grid-cols-3 max-xl:flex max-xl:flex-wrap max-xl:justify-center w-full gap-4">
             {vacancies === null ? (
               <div className="flex flex-col items-center w-full">
                 <div className="my-2">There is no vacancy</div>
