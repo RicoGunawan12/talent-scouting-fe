@@ -60,16 +60,15 @@ function NewVacancyPage() {
   };
 
   const handleAddSkill = async () => {
-    
     try {
       const body = {
         skillName: newSkill,
       };
-  
+
       await axios.post(import.meta.env.VITE_API + "skill/addNewSkill", body, {
         headers: {
-          Authorization: `Bearer ${decrypt(Cookies.get("token"))}`
-        }
+          Authorization: `Bearer ${decrypt(Cookies.get("token"))}`,
+        },
       });
       toast({
         variant: "default",
@@ -84,9 +83,7 @@ function NewVacancyPage() {
         title: "Add skill error",
         // description: "You can use the skill that you inserted!",
       });
-      
     }
-    
   };
 
   const [update, setUpdate] = useState(false);
@@ -209,14 +206,13 @@ function NewVacancyPage() {
   };
 
   const handlePublish = async () => {
-
     if (salaryStart <= 0 || salaryEnd <= 0) {
       toast({
         variant: "destructive",
         title: "Validation Error",
         description: "Salary must more than 0",
       });
-      return
+      return;
     }
     if (salaryStart > salaryEnd) {
       toast({
@@ -224,29 +220,29 @@ function NewVacancyPage() {
         title: "Validation Error",
         description: "Salary end must be more equal than salary start",
       });
-      return
+      return;
     }
 
     try {
-        const extractedSkills = skills.map(
-          ({ skillTitle, skillDescription }) => ({
-            skill_id: parseInt(skillTitle),
-            skill_detail: skillDescription,
-          })
-        );
+      const extractedSkills = skills.map(
+        ({ skillTitle, skillDescription }) => ({
+          skill_id: parseInt(skillTitle),
+          skill_detail: skillDescription,
+        })
+      );
 
-        const extractedResponsibility = responsibilities.map(
-          ({ responsibilityDetail }) => ({
-            responsibility_detail: responsibilityDetail
-          })
-        );
+      const extractedResponsibility = responsibilities.map(
+        ({ responsibilityDetail }) => ({
+          responsibility_detail: responsibilityDetail,
+        })
+      );
 
-        const extractedSection = sections.map(
-          ({ extrasTitle, extrasDescription }) => ({
-            extras_title: extrasTitle,
-            extras_description: extrasDescription,
-          })
-        );
+      const extractedSection = sections.map(
+        ({ extrasTitle, extrasDescription }) => ({
+          extras_title: extrasTitle,
+          extras_description: extrasDescription,
+        })
+      );
 
       const vacancyBody = {
         company_id: decrypt(Cookies.get("id")),
@@ -264,18 +260,16 @@ function NewVacancyPage() {
         work_time_type: workTimeType,
         job_vacancy_skills: extractedSkills,
         job_vacancy_responsibilities: extractedResponsibility,
-        extras_infos: extractedSection
+        extras_infos: extractedSection,
       };
-      
-      
 
       const vacancy = await axios.post(
         import.meta.env.VITE_API + "jobVacancy/createJobVacancy",
         vacancyBody,
         {
           headers: {
-            Authorization: `Bearer ${decrypt(Cookies.get("token"))}`
-          }
+            Authorization: `Bearer ${decrypt(Cookies.get("token"))}`,
+          },
         }
       );
       toast({
@@ -284,14 +278,10 @@ function NewVacancyPage() {
         description: "Your vacancy is published!",
       });
 
-      // 
+      //
 
-      
-      
       nav("/company/vacancy");
     } catch (error) {
-      
-      
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
@@ -303,14 +293,14 @@ function NewVacancyPage() {
   useEffect(() => {
     async function getSkill() {
       const getSkill = await axios.get(
-        import.meta.env.VITE_API + "skill/getSkill", {
+        import.meta.env.VITE_API + "skill/getSkill",
+        {
           headers: {
-            Authorization: `Bearer ${decrypt(Cookies.get("token"))}`
-          }
+            Authorization: `Bearer ${decrypt(Cookies.get("token"))}`,
+          },
         }
       );
-      
-      
+
       setDbSkills(getSkill.data);
     }
     getSkill();
@@ -325,10 +315,7 @@ function NewVacancyPage() {
 
         <div className="flex flex-col items-center">
           <div className="mx-[70px] max-w-[1000px] w-full">
-            
-
             <div className="border-[1px] shadow-md border-[#F2F2F2] px-14 py-4 rounded-md mt-10">
-
               <div className="text-[14px] font-semibold">Basic Information</div>
 
               <div className="my-4">
@@ -383,9 +370,10 @@ function NewVacancyPage() {
             </div>
 
             <div className="border-[1px] shadow-md border-[#F2F2F2] px-14 py-4 rounded-md mt-16">
-            
-              <div className="text-[14px] font-semibold">Additional Information</div>
-              
+              <div className="text-[14px] font-semibold">
+                Additional Information
+              </div>
+
               <div className="my-4">
                 <label className="font-medium">Job Location</label>
                 <Input
@@ -401,6 +389,7 @@ function NewVacancyPage() {
                   <Input
                     className="mt-2 border-[#b1b1b1] w-full"
                     placeholder="Start Range"
+                    type="number"
                     onChange={(e) => setSalaryStart(parseInt(e.target.value))}
                   />
                 </div>
@@ -413,11 +402,11 @@ function NewVacancyPage() {
                   <Input
                     className="mt-6 border-[#b1b1b1] w-full"
                     placeholder="End Range"
+                    type="number"
                     onChange={(e) => setSalaryEnd(parseInt(e.target.value))}
                   />
                 </div>
               </div>
-              
 
               <div className="my-4">
                 <div className="mb-2">
@@ -428,7 +417,9 @@ function NewVacancyPage() {
             </div>
 
             <div className="border-[1px] shadow-md border-[#F2F2F2] px-14 py-4 rounded-md mt-16">
-              <div className="text-[14px] font-semibold">Requirement Information</div>
+              <div className="text-[14px] font-semibold">
+                Requirement Information
+              </div>
 
               <div className="mb-6 mt-6">
                 <label className="font-medium">Responsibility (Min 1)</label>
@@ -478,10 +469,10 @@ function NewVacancyPage() {
                   <div className="mb-2">Skill title: Java Programming</div>
                   <div className="mt-2 mb-4">
                     Description: Proficient in Java programming with a strong
-                    understanding of object-oriented principles, data structures,
-                    and algorithms. Capable of developing robust, scalable, and
-                    maintainable code for various applications. Familiar with the
-                    latest Java versions and features.
+                    understanding of object-oriented principles, data
+                    structures, and algorithms. Capable of developing robust,
+                    scalable, and maintainable code for various applications.
+                    Familiar with the latest Java versions and features.
                   </div>
                 </div>
 
@@ -577,14 +568,9 @@ function NewVacancyPage() {
                   </div>
                 </div>
               </div>
-
-              
-
             </div>
 
-            
             <div className="border-[1px] shadow-md border-[#F2F2F2] px-14 py-4 rounded-md mt-16">
-
               {sections.map((section, idx) => {
                 return (
                   <div className="my-4" key={section.idx}>
@@ -635,8 +621,6 @@ function NewVacancyPage() {
                 </Button>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
