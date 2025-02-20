@@ -251,7 +251,7 @@ const HomePage: React.FC = () => {
             />
             <img
               src={
-                "https://th.bing.com/th/id/OIP.7L5X1P3tzY_5hOiNG082ngHaBp?rs=1&pid=ImgDetMain"
+                "https://the-iconomics.storage.googleapis.com/wp-content/uploads/2020/03/18140740/d5daeeaca986fb2655a4965884c0d6ea-905x613.png"
               }
               className="h-[150px] mx-4"
             />
