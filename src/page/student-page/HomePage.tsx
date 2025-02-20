@@ -201,7 +201,7 @@ const HomePage: React.FC = () => {
             <JobRecommendationCard JobName={"AI Engineer"} Index={3} />
             <JobRecommendationCard JobName={"Full Stack Developer"} Index={4} /> */}
             {loading ? (
-              <div className="flex justify-center my-4">
+              <div className="w-full flex justify-center my-4">
                 <Spinner />
               </div>
             ) : (
