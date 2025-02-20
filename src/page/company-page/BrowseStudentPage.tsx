@@ -87,7 +87,7 @@ function BrowseStudentPage() {
         </div>
         <div className="flex mt-10 w-full relative">
           <div
-            className="w-1/4 bg-[#F0F0F0] min-h-[60vh] h-full rounded-sm p-4 sticky top-[15%]"
+            className="w-1/4 bg-[#F0F0F0] max-md:hidden min-h-[60vh] h-full rounded-sm p-4 sticky top-[15%]"
             data-aos="fade-up"
           >
             <div className="font-bold">Filters</div>
@@ -152,7 +152,7 @@ function BrowseStudentPage() {
             {loading ? (
               <Spinner />
             ) : (
-              <div className="grid grid-cols-3 gap-10">
+              <div className="flex flex-wrap justify-center gap-10">
                 {students != null ? (
                   students.map((student: Student) => {
                     return (
