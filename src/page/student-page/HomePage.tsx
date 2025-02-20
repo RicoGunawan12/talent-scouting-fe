@@ -80,7 +80,29 @@ const HomePage: React.FC = () => {
   const [companies, setCompanies] = useState<CompanyCardProps[]>([]);
   const [vacancies, setVacancies] = useState<JobVacancy[]>([]);
   const [companyLoading, setCompanyLoading] = useState(false);
+  const [recommendation, setRecommendation] = useState<
+    { name: string; position: { id: string; name: string } }[]
+  >([]);
+  const [loading, setLoading] = useState(false);
+
   const { toast } = useToast();
+
+  useEffect(() => {
+    async function getRecommendation() {
+      setLoading(true);
+      try {
+        const recommendation = await axios.get(
+          // `https://job-fit-cv/api/user/2502017572/recommended-company`
+          `https://job-fit-cv.shirloin.my.id/api/user/2502017572/recommended-company`
+        );
+        setRecommendation(recommendation?.data);
+      } catch (error) {
+      } finally {
+        setLoading(false);
+      }
+    }
+    getRecommendation();
+  }, []);
 
   useEffect(() => {
     async function getAllCompany() {
@@ -174,10 +196,34 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="flex justify-between max-md:flex-wrap max-md:justify-center mt-6 gap-6">
-            <JobRecommendationCard JobName={"Front End Developer"} Index={1} />
+            {/* <JobRecommendationCard JobName={"Front End Developer"} Index={1} />
             <JobRecommendationCard JobName={"Back End Developer"} Index={2} />
             <JobRecommendationCard JobName={"AI Engineer"} Index={3} />
-            <JobRecommendationCard JobName={"Full Stack Developer"} Index={4} />
+            <JobRecommendationCard JobName={"Full Stack Developer"} Index={4} /> */}
+            {loading ? (
+              <div className="flex justify-center my-4">
+                <Spinner />
+              </div>
+            ) : (
+              recommendation.map(
+                (
+                  rec: {
+                    name: string;
+                    position: { id: string; name: string };
+                  },
+                  index
+                ) => {
+                  if (index <= 3) {
+                    return (
+                      <JobRecommendationCard
+                        JobName={rec.position.name}
+                        Index={index}
+                      />
+                    );
+                  } else return;
+                }
+              )
+            )}
           </div>
         </div>
 
