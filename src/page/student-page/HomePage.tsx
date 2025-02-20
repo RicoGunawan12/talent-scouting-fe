@@ -14,6 +14,7 @@ import Spinner from "../component/Spinner";
 import { useToast } from "@/components/hooks/use-toast";
 import { decrypt } from "../util/Utility";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 export interface JobType {
   Id: number;
@@ -150,10 +151,12 @@ const HomePage: React.FC = () => {
             every step of the way.
           </div>
           <div className="mt-[30px] w-[30%]">
-            <Input
-              placeholder={"Let's find a job for you"}
-              className="text-black"
-            />
+            <Link to="/browse-job">
+              <Input
+                placeholder={"Let's find a job for you"}
+                className="text-black"
+              />
+            </Link>
           </div>
         </div>
 

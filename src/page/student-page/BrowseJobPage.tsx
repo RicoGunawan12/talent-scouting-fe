@@ -104,11 +104,82 @@ function BrowseJobPage() {
                   <SelectGroup>
                     {/* <SelectLabel>Fruits</SelectLabel> */}
                     <SelectItem value="All">All</SelectItem>
+                    <SelectItem value="Aceh">Aceh</SelectItem>
+                    <SelectItem value="Sumatera Utara">
+                      Sumatera Utara
+                    </SelectItem>
+                    <SelectItem value="Sumatera Barat">
+                      Sumatera Barat
+                    </SelectItem>
+                    <SelectItem value="Riau">Riau</SelectItem>
+                    <SelectItem value="Kepulauan Riau">
+                      Kepulauan Riau
+                    </SelectItem>
+                    <SelectItem value="Jambi">Jambi</SelectItem>
+                    <SelectItem value="Sumatera Selatan">
+                      Sumatera Selatan
+                    </SelectItem>
+                    <SelectItem value="Bangka Belitung">
+                      Bangka Belitung
+                    </SelectItem>
+                    <SelectItem value="Bengkulu">Bengkulu</SelectItem>
+                    <SelectItem value="Lampung">Lampung</SelectItem>
                     <SelectItem value="Jakarta">Jakarta</SelectItem>
-                    <SelectItem value="Malang">Malang</SelectItem>
-                    <SelectItem value="Tangerang">Tangerang</SelectItem>
-                    <SelectItem value="Bekasi">Bekasi</SelectItem>
-                    <SelectItem value="Semarang">Semarang</SelectItem>
+                    <SelectItem value="Banten">Banten</SelectItem>
+                    <SelectItem value="Jawa Barat">Jawa Barat</SelectItem>
+                    <SelectItem value="Jawa Tengah">Jawa Tengah</SelectItem>
+                    <SelectItem value="DI Yogyakarta">DI Yogyakarta</SelectItem>
+                    <SelectItem value="Jawa Timur">Jawa Timur</SelectItem>
+                    <SelectItem value="Bali">Bali</SelectItem>
+                    <SelectItem value="Nusa Tenggara Barat">
+                      Nusa Tenggara Barat
+                    </SelectItem>
+                    <SelectItem value="Nusa Tenggara Timur">
+                      Nusa Tenggara Timur
+                    </SelectItem>
+                    <SelectItem value="Kalimantan Barat">
+                      Kalimantan Barat
+                    </SelectItem>
+                    <SelectItem value="Kalimantan Tengah">
+                      Kalimantan Tengah
+                    </SelectItem>
+                    <SelectItem value="Kalimantan Selatan">
+                      Kalimantan Selatan
+                    </SelectItem>
+                    <SelectItem value="Kalimantan Timur">
+                      Kalimantan Timur
+                    </SelectItem>
+                    <SelectItem value="Kalimantan Utara">
+                      Kalimantan Utara
+                    </SelectItem>
+                    <SelectItem value="Sulawesi Utara">
+                      Sulawesi Utara
+                    </SelectItem>
+                    <SelectItem value="Gorontalo">Gorontalo</SelectItem>
+                    <SelectItem value="Sulawesi Tengah">
+                      Sulawesi Tengah
+                    </SelectItem>
+                    <SelectItem value="Sulawesi Barat">
+                      Sulawesi Barat
+                    </SelectItem>
+                    <SelectItem value="Sulawesi Selatan">
+                      Sulawesi Selatan
+                    </SelectItem>
+                    <SelectItem value="Sulawesi Tenggara">
+                      Sulawesi Tenggara
+                    </SelectItem>
+                    <SelectItem value="Maluku">Maluku</SelectItem>
+                    <SelectItem value="Maluku Utara">Maluku Utara</SelectItem>
+                    <SelectItem value="Papua">Papua</SelectItem>
+                    <SelectItem value="Papua Barat">Papua Barat</SelectItem>
+                    <SelectItem value="Papua Tengah">Papua Tengah</SelectItem>
+                    <SelectItem value="Papua Pegunungan">
+                      Papua Pegunungan
+                    </SelectItem>
+                    <SelectItem value="Papua Selatan">Papua Selatan</SelectItem>
+                    <SelectItem value="Papua Barat Daya">
+                      Papua Barat Daya
+                    </SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
