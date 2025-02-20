@@ -165,7 +165,7 @@ function StudentRequestPage() {
                             {req.jobVacancy.company.name}
                           </AlertDialogTitle> */}
                           <AlertDialogDescription>
-                            <div className="my-6 text-[black]">
+                            <div className="my-6 text-[black] py-8">
                               <div className="mb-4">
                                 Status:{" "}
                                 {req.status === "Waiting" ? (
