@@ -16,6 +16,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import Spinner from "./Spinner";
 
 const ApplierRow: React.FC<
   StudentRequestProps & {
@@ -25,8 +26,10 @@ const ApplierRow: React.FC<
   const { toast } = useToast();
   const [approveNote, setApproveNote] = useState("");
   const [rejectNote, setRejectNote] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleApprove() {
+    setLoading(true);
     try {
       const body = {
         jobVacancyId: job_vacancy.id,
@@ -47,9 +50,13 @@ const ApplierRow: React.FC<
         description: "Inform admin immediately!",
       });
     }
+    finally {
+      setLoading(false);
+    }
   }
 
   async function handleReject() {
+    setLoading(true);
     try {
       const body = {
         jobVacancyId: job_vacancy.id,
@@ -69,6 +76,9 @@ const ApplierRow: React.FC<
         title: "Something went wrong",
         description: "Inform admin immediately!",
       });
+    }
+    finally {
+      setLoading(false);
     }
   }
 
@@ -101,114 +111,121 @@ const ApplierRow: React.FC<
       </Link>
 
       <div>
-        {status == "Waiting" ? (
-          <div>
-            <div className="my-2">
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button className="bg-[#28A745] w-[150px] hover:bg-[darkgreen]">
-                    Approve to Interview
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle className="text-center">
-                      Approve {student.name} to {job_vacancy?.company.name} as a{" "}
-                      {job_vacancy?.jobPosition} to interview?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      <div className="my-6">
-                        <div>Messages</div>
-                        <div>
-                          <textarea
-                            onChange={(e) => setApproveNote(e.target.value)}
-                            className="w-full border-2 rounded-md p-2 mt-2"
-                          ></textarea>
-                        </div>
-
-                        <div className="text-[red] mt-2">
-                          <div className="font-semibold">Notes:</div>
-                          <div>
-                            This notes will be sent to student by this
-                            application and email
-                          </div>
-                        </div>
-                      </div>
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction
-                      onClick={handleApprove}
-                      className="bg-[#28A745]"
-                    >
-                      Approve to Interview
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            </div>
-            <div className="my-2">
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button className="bg-[#DC3545] w-[150px] hover:bg-[darkred]">
-                    Reject
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle className="text-center">
-                      Reject {student.name} to {job_vacancy?.company.name} as a{" "}
-                      {job_vacancy?.jobPosition} to interview?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      <div className="my-6">
-                        <div>Messages</div>
-                        <div>
-                          <textarea
-                            onChange={(e) => setRejectNote(e.target.value)}
-                            className="w-full border-2 rounded-md p-2 mt-2"
-                          ></textarea>
-                        </div>
-
-                        <div className="text-[red] mt-2">
-                          <div className="font-semibold">Notes:</div>
-                          <div>
-                            This notes will be sent to student by this
-                            application and email
-                          </div>
-                        </div>
-                      </div>
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction
-                      className="bg-[#DC3545]"
-                      onClick={handleReject}
-                    >
-                      Reject
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            </div>
+        {
+          loading ?
+          <div className="flex items-center justify-center">
+            <Spinner/>
           </div>
-        ) : status == "Waiting" ? (
-          <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-            Waiting
-          </span>
-        ) : status == "Approved to Interview" ? (
-          <span className="text-center inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-700/10">
-            Approved to Interview
-          </span>
-        ) : (
-          <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-sm font-medium text-red-700 ring-1 ring-inset ring-red-700/10">
-            Rejected
-          </span>
-        )}
+          :
+          status == "Waiting" ? (
+            <div>
+              <div className="my-2">
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button className="bg-[#28A745] w-[150px] hover:bg-[darkgreen]">
+                      Approve to Interview
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle className="text-center">
+                        Approve {student.name} to {job_vacancy?.company.name} as a{" "}
+                        {job_vacancy?.jobPosition} to interview?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        <div className="my-6">
+                          <div>Messages</div>
+                          <div>
+                            <textarea
+                              onChange={(e) => setApproveNote(e.target.value)}
+                              className="w-full border-2 rounded-md p-2 mt-2"
+                            ></textarea>
+                          </div>
+  
+                          <div className="text-[red] mt-2">
+                            <div className="font-semibold">Notes:</div>
+                            <div>
+                              This notes will be sent to student by this
+                              application and email
+                            </div>
+                          </div>
+                        </div>
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+  
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={handleApprove}
+                        className="bg-[#28A745]"
+                      >
+                        Approve to Interview
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+              <div className="my-2">
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button className="bg-[#DC3545] w-[150px] hover:bg-[darkred]">
+                      Reject
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle className="text-center">
+                        Reject {student.name} to {job_vacancy?.company.name} as a{" "}
+                        {job_vacancy?.jobPosition} to interview?
+                      </AlertDialogTitle>
+                      <AlertDialogDescription>
+                        <div className="my-6">
+                          <div>Messages</div>
+                          <div>
+                            <textarea
+                              onChange={(e) => setRejectNote(e.target.value)}
+                              className="w-full border-2 rounded-md p-2 mt-2"
+                            ></textarea>
+                          </div>
+  
+                          <div className="text-[red] mt-2">
+                            <div className="font-semibold">Notes:</div>
+                            <div>
+                              This notes will be sent to student by this
+                              application and email
+                            </div>
+                          </div>
+                        </div>
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+  
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        className="bg-[#DC3545]"
+                        onClick={handleReject}
+                      >
+                        Reject
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
+            </div>
+          ) : status == "Waiting" ? (
+            <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+              Waiting
+            </span>
+          ) : status == "Approved to Interview" ? (
+            <span className="text-center inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-700/10">
+              Approved to Interview
+            </span>
+          ) : (
+            <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-sm font-medium text-red-700 ring-1 ring-inset ring-red-700/10">
+              Rejected
+            </span>
+          )
+        }
       </div>
     </div>
   );
