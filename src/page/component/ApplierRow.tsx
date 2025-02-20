@@ -28,7 +28,6 @@ const ApplierRow: React.FC<
 
   async function handleApprove() {
     try {
-      
       const body = {
         jobVacancyId: job_vacancy.id,
         studentId: student.id,
@@ -36,10 +35,12 @@ const ApplierRow: React.FC<
         companyNote: approveNote,
         notes: notes,
       };
-      await axios.post(import.meta.env.VITE_API + "jobApply/updateJobApply", body);
+      await axios.post(
+        import.meta.env.VITE_API + "jobApply/updateJobApply",
+        body
+      );
       handleUpdate();
     } catch (error) {
-      
       toast({
         variant: "destructive",
         title: "Something went wrong",
@@ -57,11 +58,12 @@ const ApplierRow: React.FC<
         companyNote: rejectNote,
         notes: notes,
       };
-      await axios.post(import.meta.env.VITE_API + "jobApply/updateJobApply", body);
+      await axios.post(
+        import.meta.env.VITE_API + "jobApply/updateJobApply",
+        body
+      );
       handleUpdate();
     } catch (error) {
-      
-      
       toast({
         variant: "destructive",
         title: "Something went wrong",
@@ -73,7 +75,7 @@ const ApplierRow: React.FC<
   return (
     <div className="flex justify-between items-center border-b-2  py-8">
       <Link
-        to={"/student-profile/company/" + student.id}
+        to={"/company/student-profile/" + student.id}
         className="flex items-center pl-4 py-2 hover:bg-gray-100 cursor-pointer"
       >
         <div className="mr-8">
