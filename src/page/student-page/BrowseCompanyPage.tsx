@@ -89,7 +89,7 @@ function BrowseCompanyPage() {
           </div>
         </div>
 
-        <div className="flex mt-10 w-full relative">
+        <div className="flex mt-10 w-full relative max-md:justify-center">
           <div
             className="w-1/4 min-h-[40vh] bg-[#F0F0F0] h-full rounded-sm p-4 sticky top-[15%] max-md:hidden"
             data-aos="fade-up"

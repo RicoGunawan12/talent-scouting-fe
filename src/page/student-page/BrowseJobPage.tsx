@@ -24,9 +24,7 @@ import { JobVacancy } from "./HomePage";
 function BrowseJobPage() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
-  const [vacancies, setVacancies] = useState<
-    JobVacancy[]
-  >([]);
+  const [vacancies, setVacancies] = useState<JobVacancy[]>([]);
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [startSalary, setStartSalary] = useState(0);
@@ -46,13 +44,11 @@ function BrowseJobPage() {
           JobTypeId: jobType,
           SearchKeyword: search,
         };
-        
 
         const response = await axios.post(
           import.meta.env.VITE_API + "jobVacancy/getJobVacancyByFilter",
           body
         );
-        
 
         setVacancies(response.data);
         setLoading(false);
@@ -85,7 +81,7 @@ function BrowseJobPage() {
         </div>
 
         <div className="flex mt-10 w-full relative">
-          <div className="w-1/4 bg-[#F0F0F0] h-full rounded-sm p-4 sticky top-[15%]">
+          <div className="w-1/4 bg-[#F0F0F0] h-full rounded-sm p-4 sticky top-[15%] max-md:hidden">
             <div className="font-bold">Filters</div>
 
             <Input
