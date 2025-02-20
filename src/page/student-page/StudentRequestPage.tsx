@@ -125,7 +125,7 @@ function StudentRequestPage() {
                     email={r.company.email} 
                     id={r.company.id} 
                     location={r.company.location} 
-                    logoUrl={r.company.logoUrl} 
+                    logoUrl={r.company.logourl} 
                     name={r.company.name} 
                     key={r.company.id}
                     message={r.message}

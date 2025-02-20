@@ -34,6 +34,7 @@ export interface Company {
   id: string;
   name: string;
   logoUrl: string;
+  logourl?: string;
   description: string;
   location: string;
   email: string;
