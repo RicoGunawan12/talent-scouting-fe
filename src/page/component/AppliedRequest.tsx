@@ -13,7 +13,7 @@ const AppliedRequest = forwardRef<HTMLDivElement, StudentRequestProps>(
         className="flex justify-between items-center py-8 border-b-[1px] border-gray-400 pr-8 cursor-pointer transition hover:bg-gray-200 py-8"
       >
         <div className="flex items-center">
-          <div className="h-[100px] w-[200px] flex items-center justify-center">
+          <div className="flex items-center justify-center">
             <img
               className="object-cover object-center"
               width={150} height={150}
