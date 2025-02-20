@@ -172,9 +172,9 @@ function StudentRequestPage() {
                                   <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                                     Waiting
                                   </span>
-                                ) : req.status === "Approved to Interview" ? (
+                                ) : req.status === "Accepted" ? (
                                   <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-700/10">
-                                    Approved to Interview
+                                    Accepted
                                   </span>
                                 ) : (
                                   <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-sm font-medium text-red-700 ring-1 ring-inset ring-red-700/10">
