@@ -194,7 +194,7 @@ function JobDetailPage() {
 
         <div className="mt-10">
           <div className="text-[24px] font-medium mb-4 font-semibold">
-            Requirements
+            Responsibilities
           </div>
 
           <ul>
