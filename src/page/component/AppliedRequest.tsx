@@ -10,7 +10,7 @@ const AppliedRequest = forwardRef<HTMLDivElement, StudentRequestProps>(
       <div
         ref={ref}
         {...props}
-        className="flex justify-between items-center py-8 border-b-[1px] border-gray-400 pr-8 cursor-pointer transition hover:bg-gray-200 py-8"
+        className="flex justify-between items-center py-8 border-b-[1px] border-gray-400 px-8 cursor-pointer transition hover:bg-gray-200"
       >
         <div className="flex items-center">
           <div className="flex items-center justify-center">
