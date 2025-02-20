@@ -35,7 +35,6 @@ export interface Company {
   // user: User;
 }
 
-
 function BrowseCompanyPage() {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [loading, setLoading] = useState(false);
@@ -53,16 +52,15 @@ function BrowseCompanyPage() {
           {
             searchKeyword: search,
             location: location,
-            name: ""
+            name: "",
           },
           {
             headers: {
-              Authorization: `Bearer ${decrypt(Cookies.get("token"))}`
-            }
+              Authorization: `Bearer ${decrypt(Cookies.get("token"))}`,
+            },
           }
         );
-        
-        
+
         setCompanies(response.data);
       } catch (error) {
         toast({
@@ -93,12 +91,16 @@ function BrowseCompanyPage() {
 
         <div className="flex mt-10 w-full relative">
           <div
-            className="w-1/4 min-h-[40vh] bg-[#F0F0F0] h-full rounded-sm p-4 sticky top-[15%]"
+            className="w-1/4 min-h-[40vh] bg-[#F0F0F0] h-full rounded-sm p-4 sticky top-[15%] max-md:hidden"
             data-aos="fade-up"
           >
             <div className="font-bold">Filters</div>
 
-            <Input className="my-2" onChange={(e) => setSearch(e.target.value)} placeholder="Search Company" />
+            <Input
+              className="my-2"
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search Company"
+            />
 
             <div>
               <Select onValueChange={(value) => setLocation(value)}>
@@ -109,14 +111,10 @@ function BrowseCompanyPage() {
                   <SelectGroup>
                     {/* <SelectLabel>Fruits</SelectLabel> */}
                     <SelectItem value="Jakarta">Jakarta</SelectItem>
-                    <SelectItem value="Surabaya">
-                      Surabaya
-                    </SelectItem>
+                    <SelectItem value="Surabaya">Surabaya</SelectItem>
                     <SelectItem value="Bandung">Bandung</SelectItem>
                     <SelectItem value="Medan">Medan</SelectItem>
-                    <SelectItem value="Tangerang">
-                      Tangerang
-                    </SelectItem>
+                    <SelectItem value="Tangerang">Tangerang</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -141,14 +139,13 @@ function BrowseCompanyPage() {
               <div className="flex justify-center">
                 <Spinner />
               </div>
+            ) : companies === null ? (
+              <div className="text-center text-red-500">
+                There is no company
+              </div>
             ) : (
-              companies === null
-              ?
-                <div className="text-center text-red-500">There is no company</div>
-              :
-              <div className="grid grid-cols-2 gap-10">
+              <div className="flex flex-wrap justify-center gap-10">
                 {companies.map((company: Company, idx: number) => {
-                  
                   return (
                     <CompanyCard
                       Id={company.id}
