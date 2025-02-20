@@ -31,7 +31,7 @@ const ApplierRow: React.FC<
       const body = {
         jobVacancyId: job_vacancy.id,
         studentId: student.id,
-        status: "Approved to Interview",
+        status: "Accepted",
         companyNote: approveNote,
         notes: notes,
       };
