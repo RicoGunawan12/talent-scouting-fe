@@ -245,13 +245,13 @@ const HomePage: React.FC = () => {
             />
             <img
               src={
-                "https://img.freepik.com/free-vector/hand-drawn-cactus-logo-template_23-2149398900.jpg?w=2000&t=st=1661990015~exp=1661990615~hmac=466aebeda6573c752489cdbfe5c11ef1cbebf1ff984e8f62018952f83d9639f6"
+                "https://cdn.freelogovectors.net/wp-content/uploads/2020/10/gojek-logo.png"
               }
               className="h-[150px] mx-4"
             />
             <img
               src={
-                "https://img.freepik.com/free-vector/hand-drawn-cactus-logo-template_23-2149398900.jpg?w=2000&t=st=1661990015~exp=1661990615~hmac=466aebeda6573c752489cdbfe5c11ef1cbebf1ff984e8f62018952f83d9639f6"
+                "https://th.bing.com/th/id/OIP.7L5X1P3tzY_5hOiNG082ngHaBp?rs=1&pid=ImgDetMain"
               }
               className="h-[150px] mx-4"
             />
@@ -267,13 +267,13 @@ const HomePage: React.FC = () => {
             />
             <img
               src={
-                "https://th.bing.com/th/id/R.ff70d9d943a71067cb9e0f061c078fd0?rik=YDbEo%2fzsssVmPA&riu=http%3a%2f%2f4.bp.blogspot.com%2f-HL8IH_ZHKvI%2fUl-kk_7AC_I%2fAAAAAAAAC6M%2fb7BWRYGdn8w%2fs1600%2fBCA-Bank-Logo-blue.png&ehk=7%2fTz85jERnSu1EVuPQi4qCQHtzNt%2bxTv%2fZiS0x4waYM%3d&risl=&pid=ImgRaw&r=0"
+                "https://th.bing.com/th/id/OIP.RRw-YfTv2j2FRFQBg94ULgHaCc?rs=1&pid=ImgDetMain"
               }
               className="h-[150px] mx-4"
             />
             <img
               src={
-                "https://th.bing.com/th/id/R.ff70d9d943a71067cb9e0f061c078fd0?rik=YDbEo%2fzsssVmPA&riu=http%3a%2f%2f4.bp.blogspot.com%2f-HL8IH_ZHKvI%2fUl-kk_7AC_I%2fAAAAAAAAC6M%2fb7BWRYGdn8w%2fs1600%2fBCA-Bank-Logo-blue.png&ehk=7%2fTz85jERnSu1EVuPQi4qCQHtzNt%2bxTv%2fZiS0x4waYM%3d&risl=&pid=ImgRaw&r=0"
+                "https://th.bing.com/th/id/OIP.uOQhqcKqDGKuaOjRK7L03gAAAA?rs=1&pid=ImgDetMain"
               }
               className="h-[150px] mx-4"
             />

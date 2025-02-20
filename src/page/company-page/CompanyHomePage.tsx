@@ -161,7 +161,7 @@ function CompanyHomePage() {
           className="bg-[#120272] p-[24px] mt-[30px] rounded-md"
           data-aos="fade-up"
         >
-          <div className="text-white text-[32px]">Welcome Back Rico!!</div>
+          <div className="text-white text-[32px]">Welcome Back {decrypt(Cookies.get("name"))}!!</div>
           <div className="text-white mt-[10px]">
             We're thrilled to have you back on our platform! As a valued company
             stakeholder, you have access to a talented pool of students eager to
@@ -182,7 +182,15 @@ function CompanyHomePage() {
             Latest Vacancy
           </div>
 
-          <div className="grid grid-cols-3 max-xl:flex max-xl:flex-wrap max-xl:justify-center w-full gap-4">
+          <div className={
+            `
+              ${vacancies === null ?
+                "flex flex-wrap justify-center w-full gap-4"
+                :
+                "grid grid-cols-3 max-xl:flex max-xl:flex-wrap max-xl:justify-center w-full gap-4"
+              }
+            `
+          }>
             {vacancies === null ? (
               <div className="flex flex-col items-center w-full">
                 <div className="my-2">There is no vacancy</div>
