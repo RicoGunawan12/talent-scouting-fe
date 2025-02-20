@@ -171,7 +171,7 @@ function CompanyHomePage() {
             opportunities.
           </div>
           <div className="mt-[30px] w-[30%]">
-            <Link to="/browse-student">
+            <Link to="/company/browse-student">
               <Input placeholder={"Let's find a student!"} />
             </Link>
           </div>
