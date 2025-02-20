@@ -245,7 +245,7 @@ const HomePage: React.FC = () => {
             />
             <img
               src={
-                "https://cdn.freelogovectors.net/wp-content/uploads/2020/10/gojek-logo.png"
+                "https://nodeflair.com/assets/recruiter/gojek-logo-04b23475628aef3e1bf09655c202a993015a31d069fadc0240369705cf0d64fc.png"
               }
               className="h-[150px] mx-4"
             />
