@@ -63,24 +63,21 @@ export interface JobVacancy {
   jobVacancySkills: JobVacancySkill[];
   jobVacancyResponsibilities: JobVacancyResponsibility[];
   extraInfos: ExtraInfo[];
-  jobApplyCount: number
+  jobApplyCount: number;
 }
 
 export interface Company {
-  id: string,
-  name: string,
-  logourl: string,
-  description: string,
-  location: string,
-  email: string
+  id: string;
+  name: string;
+  logourl: string;
+  description: string;
+  location: string;
+  email: string;
 }
-
 
 const HomePage: React.FC = () => {
   const [companies, setCompanies] = useState<CompanyCardProps[]>([]);
-  const [vacancies, setVacancies] = useState<
-    JobVacancy[]
-  >([]);
+  const [vacancies, setVacancies] = useState<JobVacancy[]>([]);
   const [companyLoading, setCompanyLoading] = useState(false);
   const { toast } = useToast();
 
@@ -92,13 +89,11 @@ const HomePage: React.FC = () => {
           import.meta.env.VITE_API + "company/",
           {
             headers: {
-              Authorization: `Bearer ${decrypt(Cookies.get("token"))}`
-            }
+              Authorization: `Bearer ${decrypt(Cookies.get("token"))}`,
+            },
           }
         );
-        
-        
-        
+
         setCompanies(response.data);
       } catch (error) {
         toast({
@@ -122,16 +117,13 @@ const HomePage: React.FC = () => {
           import.meta.env.VITE_API + "jobVacancy/",
           {
             headers: {
-              Authorization: `Bearer ${decrypt(Cookies.get("token"))}`
-            }
+              Authorization: `Bearer ${decrypt(Cookies.get("token"))}`,
+            },
           }
         );
-        
-        
+
         setVacancies(response.data);
-      } catch (error) {
-        
-      }
+      } catch (error) {}
     }
 
     AOS.init({ duration: 500 });
@@ -147,7 +139,9 @@ const HomePage: React.FC = () => {
           data-aos="fade-up"
           data-aos-once="true"
         >
-          <div className="text-[32px]">Welcome Back { decrypt(Cookies.get("name")) }!!</div>
+          <div className="text-[32px]">
+            Welcome Back {decrypt(Cookies.get("name"))}!!
+          </div>
           <div className="mt-[10px]">
             We're excited to help you find your next opportunity! Start your job
             search today by browsing our latest vacancies or updating your
@@ -256,8 +250,6 @@ const HomePage: React.FC = () => {
           ) : (
             <div className="flex justify-center flex-wrap mt-6 gap-10">
               {vacancies.map((vacancy, idx) => {
-                
-                
                 return idx > 4 ? (
                   ""
                 ) : (
@@ -295,7 +287,7 @@ const HomePage: React.FC = () => {
               There is no company. Stay tune
             </div>
           ) : (
-            <div className="grid grid-cols-3 max-md:grid-cols-1 mt-6 gap-10 mx-">
+            <div className="flex flex-wrap mt-6 gap-10 justify-center">
               {companies.map((company: CompanyCardProps, idx: number) => {
                 return (
                   <CompanyCard
