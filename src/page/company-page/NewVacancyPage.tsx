@@ -390,6 +390,7 @@ function NewVacancyPage() {
                     className="mt-2 border-[#b1b1b1] w-full"
                     placeholder="Start Range"
                     type="number"
+                    min={1}
                     onChange={(e) => setSalaryStart(parseInt(e.target.value))}
                   />
                 </div>
@@ -403,6 +404,7 @@ function NewVacancyPage() {
                     className="mt-6 border-[#b1b1b1] w-full"
                     placeholder="End Range"
                     type="number"
+                    min={1}
                     onChange={(e) => setSalaryEnd(parseInt(e.target.value))}
                   />
                 </div>
