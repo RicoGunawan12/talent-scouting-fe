@@ -47,7 +47,6 @@ function LoginPage() {
         //   expires: 1 / 24,
         // });
         Cookies.set("token", encrypt(response.data.accessToken));
-        console.log("asdasd");
 
         login();
         nav("/company/home");

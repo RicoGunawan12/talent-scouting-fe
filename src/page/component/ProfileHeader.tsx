@@ -116,7 +116,7 @@ function ProfileHeader() {
           <DropdownMenuItem>
             <Link
               to={
-                    decrypt(Cookies.get("is_microsoft")) == "true"
+                    decrypt(Cookies.get("is_microsoft")) == "false"
                     ?
                     "/company/" + decrypt(Cookies.get("id") || "0")
                     :
