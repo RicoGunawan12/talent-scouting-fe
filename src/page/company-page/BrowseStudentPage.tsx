@@ -152,7 +152,7 @@ function BrowseStudentPage() {
             {loading ? (
               <Spinner />
             ) : (
-              <div className="flex flex-wrap justify-center gap-10">
+              <div className="flex flex-wrap justify-center gap-4">
                 {students != null ? (
                   students.map((student: Student) => {
                     return (
