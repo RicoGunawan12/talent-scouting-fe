@@ -92,7 +92,7 @@ function CompanyReachoutPage() {
           <div>
             {
               reach === null ? 
-                <div className="mr-8 text-[red]">There is no reach out</div>
+                <div className="mt-8 text-[red] text-center">There is no reach out</div>
               :
               reach.map((r: ReachOutResponse) => {
                 return <CompanyRequest message={r.message} name={r.student.name} gpa={r.student.gpa} id={r.student.id} major={r.student.major} pictureUrl={r.student.pictureUrl} key={r.student.id} />
