@@ -116,15 +116,11 @@ function ProfileHeader() {
           <DropdownMenuItem>
             <Link
               to={
-                `
-                  ${
                     Cookies.get("is_microsoft") == "true"
                     ?
                     "/company/" + decrypt(Cookies.get("id") || "0")
                     :
                     "/student-profile/" + decrypt(Cookies.get("id") || "0")
-                  }
-                `
               }
             >
               Profile
