@@ -20,11 +20,11 @@ const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
 
   return (
     <div className="border-2 p-6 shadow-md min-w-[500px] max-sm:min-w-full w-full rounded-xl mb-8 ">
-      <div className="flex justify-between items-center max-sm:flex-col max-sm:flex-col">
+      <div className="flex justify-between items-center max-sm:flex-col">
         <div className="mr-8 w-full">
           <div className="flex mb-2 justify-between items-center">
             <div className="flex flex-col justify-center">
-              <div className="text-[red] font-semibold flex items-center">
+              <div className="text-[red] font-semibold flex items-center max-sm:justify-center">
                 <div className="mr-2">
                   <TimeIcon />
                 </div>
@@ -41,7 +41,7 @@ const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
                     ).toString() + " Days Left"}
               </div>
               <div
-                className="text-[24px] font-semibold mb-2"
+                className="text-[24px] font-semibold mb-2 max-sm:text-center"
                 style={{
                   display: "-webkit-box",
                   WebkitLineClamp: 1,
@@ -59,7 +59,7 @@ const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
             </div>
           </div>
           <div
-            className="mb-4 h-[50px]"
+            className="mb-4 h-[50px] max-sm:text-center"
             style={{
               display: "-webkit-box",
               WebkitLineClamp: 2,
@@ -82,7 +82,7 @@ const JobCard2: React.FC<JobCard2Props> = ({ jobVacancy, jobApplyCount }) => {
           </div>
         </div>
       </div>
-      <div className="font-semibold">
+      <div className="font-semibold max-sm:mt-4">
         {jobApplyCount.toString()} people apply to this job vacancy
       </div>
     </div>

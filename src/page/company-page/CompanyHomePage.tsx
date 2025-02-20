@@ -119,7 +119,6 @@ function CompanyHomePage() {
             },
           }
         );
-        
 
         setStudents(response.data);
       } catch (error) {
@@ -139,7 +138,6 @@ function CompanyHomePage() {
             decrypt(Cookies.get("id")) +
             "/3"
         );
-        
 
         setVacancies(response.data);
       } catch (error) {
@@ -182,7 +180,7 @@ function CompanyHomePage() {
             Latest Vacancy
           </div>
 
-          <div className="grid grid-cols-3 max-md:flex max-md:flex-wrap max-md:justify-center w-full gap-4">
+          <div className=" flex flex-wrap justify-center w-full gap-4">
             {vacancies === null ? (
               <div className="flex flex-col items-center w-full">
                 <div className="my-2">There is no vacancy</div>
@@ -192,8 +190,6 @@ function CompanyHomePage() {
               </div>
             ) : (
               vacancies.map((vacancy) => {
-                
-
                 return (
                   <JobCard2
                     key={vacancy.id}
