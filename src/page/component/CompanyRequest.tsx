@@ -32,7 +32,7 @@ function AppliedRequest({
           <div>{major}</div>
           <div>GPA: {gpa}</div>
           <div className="mt-4">Message: </div>
-          <div>{message}a</div>
+          <div>{message}</div>
         </div>
       </div>
 

@@ -227,16 +227,16 @@ function LoginPage() {
               </div>
             ) : (
               <div>
-                <Input
+                {/* <Input
                   className="my-[10px]"
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   type={"email"}
-                />
+                /> */}
                 <Button
                   className="w-full bg-[#005581] mt-[15px] hover:bg-[#00344E] flex items-center"
-                  onClick={handleLoginStudent}
-                  // onClick={loginMicrosoft}
+                  // onClick={handleLoginStudent}
+                  onClick={loginMicrosoft}
                 >
                   <div>
                     <img src={Microsoft} width={20} className="mr-2" />

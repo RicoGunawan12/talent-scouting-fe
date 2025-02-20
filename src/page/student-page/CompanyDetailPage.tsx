@@ -106,7 +106,7 @@ function CompanyDetailPage() {
 
           <div className="mt-10">
             <div className="text-[28px] font-bold">
-              Job Vacancy at PT Ford Jakarta
+              Job Vacancy at { company?.name }
             </div>
           </div>
 

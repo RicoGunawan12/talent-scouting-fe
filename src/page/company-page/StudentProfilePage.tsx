@@ -125,7 +125,7 @@ function CompanyStudentProfilePage() {
       const body = {
         CompanyId: decrypt(Cookies.get("id")),
         StudentId: studentId,
-        Message: notes,
+        notes: notes,
       };
       
 

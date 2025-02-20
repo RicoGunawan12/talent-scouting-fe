@@ -36,7 +36,7 @@ function AppliedRequestStudent({
           <div>{email}</div>
 
           <div className="mt-4">Message: </div>
-          <div>{message}a</div>
+          <div>{message}</div>
         </div>
       </div>
 

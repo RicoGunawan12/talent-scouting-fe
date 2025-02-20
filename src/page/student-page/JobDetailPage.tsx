@@ -143,7 +143,7 @@ function JobDetailPage() {
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle className="text-center">
-                      Apply for {vacancy?.jobPosition} at PT Bank Central Asia
+                      Apply for {vacancy?.jobPosition} at {vacancy?.company.name}
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                       <div className="my-6">
